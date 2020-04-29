@@ -12,14 +12,14 @@
       </van-notice-bar>
       <p>刷新次数: {{ count }}</p>
       <van-grid clickable :column-num="4">
-        <van-grid-item icon="home-o" text="淘市场" to="/" />
-        <van-grid-item icon="search" text="小卖部" url="/vant/mobile.html" />
-        <van-grid-item icon="search" text="报修服务" url="/vant/mobile.html" />
-        <van-grid-item icon="search" text="校园风光" url="/vant/mobile.html" />
-        <van-grid-item icon="search" text="缴费中心" url="/vant/mobile.html" />
-        <van-grid-item icon="search" text="我的课表" url="/vant/mobile.html" />
-        <van-grid-item icon="search" text="失物招领" url="/vant/mobile.html" />
-        <van-grid-item icon="search" text="通知公告" url="/vant/mobile.html" />
+        <van-grid-item icon="icon iconfont icon-ershou" text="淘市场" to="/" />
+        <van-grid-item icon="icon iconfont icon-ershoushichang" text="小卖部" url="/vant/mobile.html" />
+        <van-grid-item icon="icon iconfont icon-baoxiu" text="报修服务" url="/vant/mobile.html" />
+        <van-grid-item icon="icon iconfont icon-fengjing" text="校园风光" url="/vant/mobile.html" />
+        <van-grid-item icon="icon iconfont icon-iconcard" text="缴费中心" url="/vant/mobile.html" />
+        <van-grid-item icon="icon iconfont icon-kebiao" text="我的课表" url="/vant/mobile.html" />
+        <van-grid-item icon="icon iconfont icon-dibudaohanglan-" text="失物招领" url="/vant/mobile.html" />
+        <van-grid-item icon="icon iconfont icon-gonggao" text="通知公告" url="/vant/mobile.html" />
       </van-grid>
       <van-swipe :autoplay="5000" class="my-swipe" indicator-color="white">
         <!-- <van-swipe-item v-for="(image, index) in images" :key="index">

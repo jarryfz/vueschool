@@ -43,12 +43,12 @@ const mockdata = req => {
 */
 const newsList = req => {
   let data = [];
-  let image = [];
-  for (let i=0;i<10;i++) {
-    let arrimg = Random.dataImage('300x300')
-    image.push(arrimg)
-  }
   for(let i=0;i<10;i++) {
+    let image = [];
+    for (let i=0;i<10;i++) {
+      let arrimg = Random.dataImage('300x300')
+      image.push(arrimg)
+    }
     let res = {
       id: Random.natural(0, 100),
       img: Random.dataImage('300x300'),
@@ -70,12 +70,12 @@ const newsList = req => {
 */
 const froumList = req => {
   let data = [];
-  let image = [];
-  for (let i=0;i<Random.natural(0,3);i++) {
-    let arrimg = Random.dataImage('300x150')
-    image.push(arrimg)
-  }
   for (let i = 0; i < 10; i++) {
+    let image = [];
+    for (let i=0;i<Random.natural(0,3);i++) {
+      let arrimg = Random.dataImage('300x150')
+      image.push(arrimg)
+    }
     let res = {
       id: Random.natural(0, 100),
       img: image,

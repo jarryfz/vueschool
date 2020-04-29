@@ -5,12 +5,12 @@ const code = 200 // 返回的状态码
 const list = req => {
   let data = [];
   if(req.body){
-    let image = [];
-    for (let i=0;i<Random.natural(0,3);i++) {
-      let arrimg = Random.dataImage('300x150')
-      image.push(arrimg)
-    }
     for (let i = 0; i < 10; i++) {
+      let image = [];
+      for (let i=0;i<Random.natural(0,3);i++) {
+        let arrimg = Random.dataImage('300x200')
+        image.push(arrimg)
+      }
       let res = {
         id: Random.natural(0, 100),
         img: image,
