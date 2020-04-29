@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
     <!-- <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000" route>
       <van-tabbar-item replace to="/home" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item replace to="/school-news" icon="search">校园资讯</van-tabbar-item>
@@ -11,23 +14,22 @@
 </template>
 
 <script>
-  import { Tabbar, TabbarItem } from 'vant';
-  export default {
-    components:{
-      [Tabbar.name]: Tabbar,
-      [TabbarItem.name]: TabbarItem
-    },
-    data () {
-      return {
-        active: 0,
-      }
-    }
+import { Tabbar, TabbarItem } from "vant";
+export default {
+  components: {
+    [Tabbar.name]: Tabbar,
+    [TabbarItem.name]: TabbarItem
+  },
+  data() {
+    return {
+      active: 0
+    };
   }
+}
 </script>
 <style lang="scss">
-html,body{
+html,body {
   height: calc(100% - 50px);
-
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

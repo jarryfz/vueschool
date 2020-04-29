@@ -14,26 +14,31 @@ export default new Router({
       path: '/',
       name: 'home',
       redirect: '/home',
+      meta: { keepAlive: false },
       component: () => import('@/views/Home.vue'),
       children: [
         {
           path: '/home',
           name: 'index',
+          meta: { keepAlive: true },
           component: () => import('@/views/home/home.vue')
         },
         {
           path: '/school-news',
           name: 'schoolNews',
+          meta: { keepAlive: true },
           component: () => import('@/views/home/schoolNews.vue')
         },
         {
           path: '/twitter-school',
           name: 'twitterSchool',
+          meta: { keepAlive: true },
           component: () => import('@/views/home/twitterSchool.vue')
         },
         {
           path: '/mine',
           name: 'mine',
+          meta: { keepAlive: true },
           component: () => import('@/views/home/mine.vue')
         }
       ]

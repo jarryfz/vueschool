@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <div class="views">
-      <router-view></router-view>
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
     </div>
     <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000" route>
       <van-tabbar-item replace to="/home" class="iconfont icon-shouye">首页</van-tabbar-item>

@@ -25,7 +25,7 @@
         <!-- <van-swipe-item v-for="(image, index) in images" :key="index">
           <img v-lazy="image" />
         </van-swipe-item> -->
-        <van-swipe-item>1</van-swipe-item>
+        <van-swipe-item v-bgColor>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
         <van-swipe-item>3</van-swipe-item>
         <van-swipe-item>4</van-swipe-item>
@@ -33,7 +33,7 @@
       <van-cell title="单元格" icon="location-o" />
       <sc-news-list :newsList="newsList"></sc-news-list>
       <van-cell title="单元格" icon="location-o" />
-      <div class="sc_forum">
+      <!-- <div class="sc_forum">
         <div class="sc_forum_avatar">
           <img src="../../assets/image/avatar_boy4.png" alt="">
         </div>
@@ -42,12 +42,16 @@
           <div class="sc_forum_content_row">
             省根连化低低养周计又龙条先构口总作四统基图他党也此适常格命由约成据一海将系节,次活机看选百难术劳力社给满例会快进非活改团色力制民量几给体石说由型
           </div>
+          <div class="sc_forum_content_img">
+            <van-image fit="cover" width="80px" height="80px" src="../../assets/image/avatar_boy4.png"/>
+          </div>
           <div class="sc_forum_content_footer">
             <div>2020.04.28 14:21:56</div>
             <div>66评论</div>
           </div>
         </div>
-      </div>
+      </div> -->
+      <sc-froum :froumList="froumList"></sc-froum>
     </van-pull-refresh>
   </div>
 </template>
@@ -62,12 +66,14 @@ import { Swipe, SwipeItem } from 'vant';
 import { NoticeBar } from 'vant';
 import { Cell } from 'vant';
 import { Tab, Tabs } from 'vant';
-import { Skeleton } from 'vant';
 import ScNewsList from '@/components/ScNewsList.vue';
+import scrollTop from "@/mixins/scrollTop.js";
+import ScFroum from "@/components/ScFroum.vue";
 export default {
   name: 'home',
   components: {
     ScNewsList,
+    ScFroum,
     [PullRefresh.name]: PullRefresh,
     [Toast.name]: Toast,
     [Grid.name]: Grid,
@@ -79,8 +85,9 @@ export default {
     [Cell.name]: Cell,
     [Icon.name]: Icon,
     [Tab.name]: Tab,
-    [Tabs.name]: Tabs,
+    [Tabs.name]: Tabs
   },
+  mixins: [scrollTop],
   data() {
     return {
       count: 0,
@@ -91,7 +98,9 @@ export default {
         'https://img.yzcdn.cn/vant/apple-2.jpg',
       ],
       newsList: [],
+      froumList: [],
       active: 0,
+      scroll: '',
     }
   },
   created() {
@@ -101,21 +110,23 @@ export default {
     onRefresh() {
       setTimeout(() => {
         Toast('刷新成功');
-        this.isLoading = false;
+        this.queryList();
         this.count++;
+        this.isLoading = false;
       }, 1000);
-    },
-    scroll(obj) {
-      console.log(obj)
     },
     queryList() {
       this.$http.post("/home/newsList").then(res => {
         console.log(res.data)
         this.newsList = res.data.data;
       })
+      this.$http.post("/home/froum").then(res => {
+        console.log(res.data)
+        this.froumList = res.data.data;
+      })
     }
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -126,37 +137,5 @@ export default {
   text-align: center;
   background-color: #39a9ed;
 }
-.sc_forum {
-  display: flex;
-  overflow: hidden;
-  padding: 3px 16px;
-  .sc_forum_avatar {
-    width: 32px;
-    height: 32px;
-    margin-right: 16px;
-    flex-shrink: 0;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .sc_forum_content {
-    .sc_forum_content_title {
-      width: 40%;
-      font-size: 16px;
-      margin: 5px 0;
-    }
-    .sc_forum_content_row {
-      color: gray;
-      font-size: 13px;
-    }
-    .sc_forum_content_footer{
-      font-size: 12px;
-      color: gray;
-      display: flex;
-      margin: 5px 0;
-      justify-content: space-between;
-    }
-  }
-}
+
 </style>

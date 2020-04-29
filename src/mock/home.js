@@ -48,7 +48,7 @@ const newsList = req => {
     let arrimg = Random.dataImage('300x300')
     image.push(arrimg)
   }
-  for(let i=0;i<Random.natural(0, 5);i++) {
+  for(let i=0;i<10;i++) {
     let res = {
       id: Random.natural(0, 100),
       img: Random.dataImage('300x300'),
@@ -65,8 +65,36 @@ const newsList = req => {
     data
   }
 }
+/** 
+ * 首页论坛mock数据
+*/
+const froumList = req => {
+  let data = [];
+  let image = [];
+  for (let i=0;i<Random.natural(0,3);i++) {
+    let arrimg = Random.dataImage('300x150')
+    image.push(arrimg)
+  }
+  for (let i = 0; i < 10; i++) {
+    let res = {
+      id: Random.natural(0, 100),
+      img: image,
+      name: Random.ctitle(2, 8),
+      time: Random.date() + ' ' + Random.time(), // 随机生成年月日 + 时间
+      avatar: Random.dataImage('300x300'),
+      content: Random.csentence(15, 40),
+      totalComment: Random.natural(0, 1000),
+    }
+    data.push(res)
+  }
+  return {
+    code,
+    data
+  }
+}
 
 // 定义请求链接，类型，还有返回数据
 Mock.mock(`${domain}/posts`, 'get', postData);
 Mock.mock(`${domain}/userinfo`, 'post', mockdata);
-Mock.mock(`${domain}/home/newsList`, 'post', newsList)
+Mock.mock(`${domain}/home/newsList`, 'post', newsList);
+Mock.mock(`${domain}/home/froum`, 'post', froumList);

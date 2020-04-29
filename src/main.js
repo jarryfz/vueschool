@@ -6,6 +6,8 @@ import Mock from './mock/index' // 刚刚手写的mock.js文件
 import axios from 'axios' // axios http请求库
 import './style/icon.css';
 import './style/common.scss';
+import './directive/index.js';
+
 axios.defaults.baseURL = 'http://mockjs.com/api' // 设置默认请求的url
 Vue.prototype.$http = axios
 Vue.config.productionTip = false;
