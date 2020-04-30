@@ -1,6 +1,8 @@
 const path = require('path');
+const pxtoviewport = require('postcss-px-to-viewport');
+const autoprefixer = require('autoprefixer');
 function resolve (dir) {
-    return path.join(__dirname, dir)
+    return path.join(__dirname, dir);
 }
 module.exports = {
   lintOnSave: true,
@@ -16,5 +18,20 @@ module.exports = {
     .set('@/static',resolve('src/static'))
     .set('@/store',resolve('src/store'))
     .set('@/views',resolve('src/views'))
+  },
+  css: {
+    loaderOptions: {
+      postcss: {
+        plugins: [
+          autoprefixer(),
+          pxtoviewport({
+            viewportWidth: 375
+            // landscapeUnit: 'px',
+            // landscape: true,
+            // landscapeWidth: 95
+          })
+        ]
+      }
+    }
   }
-}
+};
