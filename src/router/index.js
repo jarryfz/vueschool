@@ -42,6 +42,54 @@ export default new Router({
           component: () => import('@/views/home/mine.vue')
         }
       ]
-    }
+    },
+    {
+      path: "/market",
+      name: "market",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/market.vue")
+    },
+    {
+      path: "/shop",
+      name: "shop",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/shop.vue")
+    },
+    {
+      path: "/repairService",
+      name: "repairService",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/repairService.vue")
+    },
+    {
+      path: "/campusScenery",
+      name: "campusScenery",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/campusScenery.vue")
+    },  
+    {
+      path: "/paymentCenter",
+      name: "paymentCenter",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/paymentCenter.vue")
+    },
+    {
+      path: "/myClassSchedule",
+      name: "myClassSchedule",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/myClassSchedule.vue")
+    },
+    {
+      path: "/vanTMobileHtml",
+      name: "vanTMobileHtml",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/vanTMobileHtml.vue")
+    },
+    {
+      path: "/announcement",
+      name: "announcement",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/announcement.vue")
+    },
   ]
 })
