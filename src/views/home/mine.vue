@@ -2,7 +2,7 @@
   <div class="">
     <div class="person_center">
       <div class="person_info">
-        <img src="../../assets/image/avatar_boy.png" alt="">
+        <img src="../../assets/image/avatar_boy.png">
       </div>
     </div>
     <div class="m-t-n40 sc_card">
@@ -10,8 +10,8 @@
         <span>西10-407</span>
       </div>
       <div class="sc_card_item">
-        <div class="sc_card_item_content">电费</div>
-        <div class="sc_card_item_content">饭卡</div>
+        <div class="sc_card_item_content item_bg">电费</div>
+        <div class="sc_card_item_content item_bg1">饭卡</div>
       </div>
     </div>
     <div class="sc_card">
@@ -82,6 +82,14 @@ export default {
     }
   }
 }
+.item_bg {
+  background-image: url("../../assets/image/item_bg.png");
+  background-size: 100% 100%;
+}
+.item_bg1 {
+  background-image: url("../../assets/image/item_bg1.png");
+  background-size: 100% 100%;
+}
 .sc_card {
   margin: 15px 16px;
   z-index: 50;
@@ -100,9 +108,12 @@ export default {
   .sc_card_item {
     display: flex;
     align-items: center;
+    margin: 10px 11px;
     .sc_card_item_content {
-      margin: 10px 16px;
+      margin: 0px 5px;
+      padding: 10px 0;
       flex: 1;
+      color: #fff;
       border-right: 1px solid #ccc;
       &:last-child {
         border: none;
