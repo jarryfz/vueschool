@@ -75,9 +75,16 @@ export default {
       }
     },
     onLoad() {
-      setTimeout(() => {
-        this.getData();
-      }, 1000);
+      if(this.requestUrl) {
+        setTimeout(() => {
+          this.getData();
+        }, 1000);
+      }else{
+        this.finished = true;
+        this.refresh = false;
+        this.loading = false;
+      }
+     
     },
     onRefresh() {
       // 清空列表数据
