@@ -8,6 +8,7 @@
           finished-text="没有更多了"
           @load="onLoad"
         >
+          <slot name="content"></slot>
           <slot :list="list"></slot>
         </van-list>
       </template>

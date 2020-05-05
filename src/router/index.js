@@ -46,7 +46,7 @@ export default new Router({
     {
       path: "/market",
       name: "market",
-      meta: { keepAlive: true },
+      meta: { keepAlive: false },
       component: () => import("@/views/gridPage/market.vue")
     },
     {
@@ -91,5 +91,17 @@ export default new Router({
       meta: { keepAlive: true },
       component: () => import("@/views/gridPage/announcement.vue")
     },
+    {
+      path: "/market/:detail",
+      name: "marketDetail",
+      meta: {},
+      component: () => import("@/views/gridPage/detail.vue")
+    },
+    {
+      path: '*',
+      name: '404',
+      meta: { keepAlive: true },
+      component: () => import("@/components/404.vue")
+    }
   ]
 })

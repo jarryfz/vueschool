@@ -6,16 +6,7 @@
       @click-left="onClickLeft"
     />
     <tab-refresh-list>
-      <van-grid clickable :column-num="4">
-        <van-grid-item icon="icon iconfont icon-ershou" text="淘市场" to="market" />
-        <van-grid-item icon="icon iconfont icon-ershoushichang" text="小卖部" to="shop" />
-        <van-grid-item icon="icon iconfont icon-baoxiu" text="报修服务" to="repairService" />
-        <van-grid-item icon="icon iconfont icon-fengjing" text="校园风光" to="campusScenery" />
-        <van-grid-item icon="icon iconfont icon-iconcard" text="缴费中心" to="paymentCenter" />
-        <van-grid-item icon="icon iconfont icon-kebiao" text="我的课表" to="myClassSchedule" />
-        <van-grid-item icon="icon iconfont icon-dibudaohanglan-" text="失物招领" to="vanTMobileHtml" />
-        <van-grid-item icon="icon iconfont icon-gonggao" text="通知公告" to="announcement" />
-      </van-grid>
+      
     </tab-refresh-list>
   </div>
 </template>
@@ -28,8 +19,6 @@ export default {
   components: {
     TabRefreshList,
     [NavBar.name]: NavBar,
-    [Grid.name]: Grid,
-    [GridItem.name]: GridItem,
   },
   data() {
     return {
@@ -48,6 +37,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$router,this.$route)
     let arr1 = [12,34,65,345,4];
     let arr2 = [...arr1];
     arr1.push(99);
