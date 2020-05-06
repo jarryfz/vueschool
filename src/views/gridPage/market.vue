@@ -5,20 +5,47 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    <tab-refresh-list>
-      
-    </tab-refresh-list>
+    <div class="body">
+      <tab-refresh-list>
+        <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
+          <van-swipe-item>1</van-swipe-item>
+          <van-swipe-item>2</van-swipe-item>
+          <van-swipe-item>3</van-swipe-item>
+          <van-swipe-item>4</van-swipe-item>
+        </van-swipe>
+        <div class="flex">
+          <div class="card m-r-2">
+            jj
+          </div>
+          <div class="m-l-2 flex1">
+            <div class="card">m</div>
+            <div class="card">m</div>
+          </div>
+        </div>
+      </tab-refresh-list>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import { NavBar, Grid, GridItem } from 'vant';
+import { 
+  NavBar,
+  Tab,
+  Tabs,
+  Swipe,
+  SwipeItem
+} from 'vant';
 import TabRefreshList from "@/components/TabRefreshList.vue";
 export default {
   name: "market",
   components: {
     TabRefreshList,
     [NavBar.name]: NavBar,
+    [Tab.name]: Tab,
+    [Tabs.name]: Tabs,
+    [Swipe.name]: Swipe,
+    [SwipeItem.name]: SwipeItem
   },
   data() {
     return {
@@ -79,5 +106,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  
+  .my-swipe .van-swipe-item {
+    color: #fff;
+    font-size: 20px;
+    line-height: 100px;
+    margin-top: 5px;
+    border-radius: 6px;
+    text-align: center;
+    background-color: #39a9ed;
+  }
+  .body{
+    margin: 0 16px;
+  }
+  .card {
+    flex: 1;
+    margin-top: 8px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    box-sizing: border-box;
+    // box-shadow: 0 0 3px #000000;
+    // line-height: 120px;
+  }
+  .m-r-2 {
+    margin-right: 5px;
+  }
+  .m-l-2 {
+    margin-left: 5px;
+  }
+  .flex1 {
+    flex: 1;
+  }
 </style>
