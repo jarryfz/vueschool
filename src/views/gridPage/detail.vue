@@ -21,6 +21,12 @@ export default {
       
     }
   },
+  created() {
+    let f = () => {
+      console.log(arguments)
+    }
+    f(23)
+  },
   methods: {
     onClickLeft() {
       this.$router.go(-1)

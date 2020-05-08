@@ -4,7 +4,26 @@
 .m-t-n40 {
   margin-top: -40px !important;
 }
-
+.p-l-8 {
+  padding-left: 8px;
+}
 .flex {
   display: flex;
+}
+.rc_app {
+  padding: 0 16px;
+  background-color: #f6f6f6;
+}
+.main-content {
+  // padding: 0 16px;
+  &::before {
+    content: '';
+    display: block;
+    height: 44px;
+  }
+}
+.text-over-nowrap {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

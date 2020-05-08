@@ -30,10 +30,10 @@ export default new Router({
           component: () => import('@/views/home/schoolNews.vue')
         },
         {
-          path: '/twitter-school',
-          name: 'twitterSchool',
+          path: '/message',
+          name: 'message',
           meta: { keepAlive: true },
-          component: () => import('@/views/home/twitterSchool.vue')
+          component: () => import('@/views/home/message.vue')
         },
         {
           path: '/mine',
@@ -48,6 +48,12 @@ export default new Router({
       name: "market",
       meta: { keepAlive: false },
       component: () => import("@/views/gridPage/market.vue")
+    },
+    {
+      path: '/twitter-school',
+      name: 'twitterSchool',
+      meta: { keepAlive: true },
+      component: () => import('@/views/gridPage/twitterSchool.vue')
     },
     {
       path: "/shop",

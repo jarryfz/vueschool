@@ -10,12 +10,11 @@
       <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="volume-o">
         通知内容
       </van-notice-bar>
-      <p>刷新次数: {{ count }}</p>
       <van-grid clickable :column-num="4">
         <van-grid-item icon="icon iconfont icon-ershou" text="淘市场" to="market" />
         <van-grid-item icon="icon iconfont icon-ershoushichang" text="小卖部" to="shop" />
         <van-grid-item icon="icon iconfont icon-baoxiu" text="报修服务" to="repairService" />
-        <van-grid-item icon="icon iconfont icon-fengjing" text="校园风光" to="campusScenery" />
+        <van-grid-item icon="icon iconfont icon-fengjing" text="叽喳校园" to="twitter-school" />
         <van-grid-item icon="icon iconfont icon-iconcard" text="缴费中心" to="paymentCenter" />
         <van-grid-item icon="icon iconfont icon-kebiao" text="我的课表" to="myClassSchedule" />
         <van-grid-item icon="icon iconfont icon-dibudaohanglan-" text="失物招领" to="vanTMobileHtml" />
@@ -30,28 +29,10 @@
         <van-swipe-item>3</van-swipe-item>
         <van-swipe-item>4</van-swipe-item>
       </van-swipe>
-      <van-cell title="单元格" icon="location-o" />
-      <sc-news-list :newsList="newsList"></sc-news-list>
-      <van-cell title="单元格" icon="location-o" />
-      <!-- <div class="sc_forum">
-        <div class="sc_forum_avatar">
-          <img src="../../assets/image/avatar_boy4.png" alt="">
-        </div>
-        <div class="sc_forum_content">
-          <div class="sc_forum_content_title">nickname</div>
-          <div class="sc_forum_content_row">
-            省根连化低低养周计又龙条先构口总作四统基图他党也此适常格命由约成据一海将系节,次活机看选百难术劳力社给满例会快进非活改团色力制民量几给体石说由型
-          </div>
-          <div class="sc_forum_content_img">
-            <van-image fit="cover" width="80px" height="80px" src="../../assets/image/avatar_boy4.png"/>
-          </div>
-          <div class="sc_forum_content_footer">
-            <div>2020.04.28 14:21:56</div>
-            <div>66评论</div>
-          </div>
-        </div>
-      </div> -->
+      <van-cell title="叽喳叽喳" icon="location-o" />
       <sc-froum :froumList="froumList"></sc-froum>
+      <van-cell title="校内资讯" icon="location-o" />
+      <sc-news-list :newsList="newsList"></sc-news-list>
     </van-pull-refresh>
   </div>
 </template>

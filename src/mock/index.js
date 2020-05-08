@@ -1,5 +1,6 @@
 import home from './home';
 import twitter from './twitterSchool'
+import market from './market'
 /**
  * 模拟数据mock
  * 

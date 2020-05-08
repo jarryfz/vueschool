@@ -1,27 +1,35 @@
 <template>
-  <div>
+  <div class="rc_app">
     <van-nav-bar
       title="淘市场"
       left-arrow
+      fixed
       @click-left="onClickLeft"
     />
-    <div class="body">
-      <tab-refresh-list>
-        <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
-          <van-swipe-item>1</van-swipe-item>
-          <van-swipe-item>2</van-swipe-item>
-          <van-swipe-item>3</van-swipe-item>
-          <van-swipe-item>4</van-swipe-item>
-        </van-swipe>
-        <div class="flex">
-          <div class="card m-r-2">
-            jj
+    <div class="main-content">
+      <tab-refresh-list requestUrl="/market/list">
+        <template slot="content">
+          <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
+            <van-swipe-item>1</van-swipe-item>
+            <van-swipe-item>2</van-swipe-item>
+            <van-swipe-item>3</van-swipe-item>
+            <van-swipe-item>4</van-swipe-item>
+          </van-swipe>
+          <div class="flex">
+            <div class="card m-r-2">
+              jj
+            </div>
+            <div class="m-l-2 flex1">
+              <div class="card">m</div>
+              <div class="card">m</div>
+            </div>
           </div>
-          <div class="m-l-2 flex1">
-            <div class="card">m</div>
-            <div class="card">m</div>
+        </template>
+        <template v-slot="{ list }">
+          <div class="list">
+            <goods :goodsList="list"></goods>
           </div>
-        </div>
+        </template>
       </tab-refresh-list>
     </div>
     
@@ -34,12 +42,16 @@ import {
   Tab,
   Tabs,
   Swipe,
-  SwipeItem
+  SwipeItem,
+  DropdownMenu,
+  DropdownItem
 } from 'vant';
 import TabRefreshList from "@/components/TabRefreshList.vue";
+import goods from "@/components/goods.vue";
 export default {
   name: "market",
   components: {
+    goods,
     TabRefreshList,
     [NavBar.name]: NavBar,
     [Tab.name]: Tab,
@@ -51,6 +63,7 @@ export default {
     return {
       value1: 0,
       value2: 'a',
+      goodsList: [],
       option1: [
         { text: '全部商品', value: 0 },
         { text: '新款商品', value: 1 },
@@ -64,43 +77,43 @@ export default {
     }
   },
   created() {
-    console.log(this.$router,this.$route)
-    let arr1 = [12,34,65,345,4];
-    let arr2 = [...arr1];
-    arr1.push(99);
-    console.log('arr1',arr1,'arr2',arr2)//arr1 (6) [12, 34, 65, 345, 4, 99] arr2 (5) [12, 34, 65, 345, 4];
+    // console.log(this.$router,this.$route)
+    // let arr1 = [12,34,65,345,4];
+    // let arr2 = [...arr1];
+    // arr1.push(99);
+    // console.log('arr1',arr1,'arr2',arr2)//arr1 (6) [12, 34, 65, 345, 4, 99] arr2 (5) [12, 34, 65, 345, 4];
 
-    /** 
-     * 函数
-    */
-    function f(x=10,y=20) {
-      console.log(x,y)
-    }
-    f(100);
-    /** 
-     * 递归
-    */
-    function getsum(n) {
-      if(n === 1) {
-        return 1
-      } else {
-        return getsum(n - 1) + n;
-      }
-    }
-    console.log(getsum(5))
-    const hs = (n) => {
-      if(n == 1) {
-        return 1
-      }else {
-        return hs(n - 1) + n
-      }
-    }
-    console.log(hs(6))
+    // /** 
+    //  * 函数
+    // */
+    // function f(x=10,y=20) {
+    //   console.log(x,y)
+    // }
+    // f(100);
+    // /** 
+    //  * 递归
+    // */
+    // function getsum(n) {
+    //   if(n === 1) {
+    //     return 1
+    //   } else {
+    //     return getsum(n - 1) + n;
+    //   }
+    // }
+    // console.log(getsum(5))
+    // const hs = (n) => {
+    //   if(n == 1) {
+    //     return 1
+    //   }else {
+    //     return hs(n - 1) + n
+    //   }
+    // }
+    // console.log(hs(6))
   },
   methods: {
     onClickLeft() {
       this.$router.push({path: "/"})
-    }
+    },
   }
 }
 </script>
@@ -136,4 +149,8 @@ export default {
   .flex1 {
     flex: 1;
   }
+  .list {
+    width: 100%;
+  }
+  
 </style>
