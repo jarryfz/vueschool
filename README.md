@@ -1,4 +1,4 @@
-# vuemock
+# vue全家桶+vant+mockjs开发校园生活类webApp
 
 ## Project setup
 ```
