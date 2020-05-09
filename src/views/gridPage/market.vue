@@ -1,5 +1,5 @@
 <template>
-  <div class="rc_app">
+  <div class="">
     <van-nav-bar
       title="淘市场"
       left-arrow
@@ -8,7 +8,7 @@
     />
     <div class="main-content">
       <tab-refresh-list requestUrl="/market/list">
-        <template slot="content">
+        <template v-slot="{ list }">
           <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
             <van-swipe-item>1</van-swipe-item>
             <van-swipe-item>2</van-swipe-item>
@@ -24,10 +24,8 @@
               <div class="card">m</div>
             </div>
           </div>
-        </template>
-        <template v-slot="{ list }">
           <div class="list">
-            <goods :goodsList="list"></goods>
+            <goods :goodsList="list" @goodsDetailBtn="detail"></goods>
           </div>
         </template>
       </tab-refresh-list>
@@ -114,6 +112,10 @@ export default {
     onClickLeft() {
       this.$router.push({path: "/"})
     },
+    detail(params) {
+      console.log(params)
+      this.$router.push({path: `/market/:${params}`})
+    }
   }
 }
 </script>
@@ -122,11 +124,11 @@ export default {
   .my-swipe .van-swipe-item {
     color: #fff;
     font-size: 20px;
-    line-height: 100px;
-    margin-top: 5px;
-    border-radius: 6px;
+    line-height: 200px;
     text-align: center;
-    background-color: #39a9ed;
+    background-color: #e03500;
+    outline: none;
+    border-radius: 6px;
   }
   .body{
     margin: 0 16px;
@@ -151,6 +153,7 @@ export default {
   }
   .list {
     width: 100%;
+    font-size: 0;
   }
   
 </style>

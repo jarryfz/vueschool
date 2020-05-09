@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="goods_card" v-for="item in goodsList" :key="item.id">
+  <div class="goods_list">
+    <div class="goods_card" v-for="item in goodsList" @click="btnEvent(item.id)" :key="item.price">
       <div class="goods_img">
         <img :src="item.goodsImg" alt="">
       </div>
@@ -28,25 +28,47 @@ export default {
       type: Array,
       default: () => {}
     }
+  },
+  methods: {
+    btnEvent(id) {
+      this.$emit('goodsDetailBtn',id)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.goods_list {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  padding: 6px;
+}
 .goods_card {
-  display: inline-block;
-  // border: 1px solid #ffffff;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-shrink: 0;
+  box-sizing: border-box;
   box-shadow: 0 0 3px #ccc;
   border-radius: 5px;
-  width: calc(50% - 7px);
+  width: 171.5px;
   overflow: hidden;
   background: #ffffff;
-  &:nth-of-type(odd) {
-    margin: 6px 5px 0 2px;
-  }
-  &:nth-of-type(even) {
-    margin: 6px 0 0 5px;
-  }
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 8px;
+  flex-direction: column;
+  align-content: flex-start;
+  // &:nth-of-type(odd) {
+  //   margin: 6px 5px 0 0px;
+  // }
+  // &:nth-of-type(even) {
+  //   margin: 6px 0 0 5px;
+  // }
   .goods_img {
     img {
       width: 100%;

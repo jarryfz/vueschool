@@ -5,16 +5,18 @@
       left-arrow
       @click-left="onClickLeft"
     />
-    {{this.$route.params}}
+    <van-uploader :after-read="afterRead" />
   </div>
 </template>
 
 <script>
-import { NavBar } from 'vant';
+import { NavBar,Uploader,Notify } from 'vant';
 export default {
   name: 'detail',
   components: {
-    [NavBar.name]: NavBar
+    [NavBar.name]: NavBar,
+    [Uploader.name]: Uploader,
+    [Notify.name]: Notify
   },
   data() {
     return {
@@ -30,7 +32,12 @@ export default {
   methods: {
     onClickLeft() {
       this.$router.go(-1)
-    }
+    },
+    afterRead(file) {
+      // 此时可以自行将文件上传至服务器
+      console.log(file);
+      Notify(file.file.type);
+    },
   }
 }
 </script>
