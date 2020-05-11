@@ -10,10 +10,18 @@
       <tab-refresh-list requestUrl="/market/list">
         <template v-slot="{ list }">
           <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
-            <van-swipe-item>1</van-swipe-item>
-            <van-swipe-item>2</van-swipe-item>
-            <van-swipe-item>3</van-swipe-item>
-            <van-swipe-item>4</van-swipe-item>
+            <van-swipe-item>
+              <img :src="banner" alt="">
+            </van-swipe-item>
+            <van-swipe-item>
+              <img :src="banner1" alt="">
+            </van-swipe-item>
+            <van-swipe-item>
+              <img :src="banner2" alt="">
+            </van-swipe-item>
+            <van-swipe-item>
+              <img :src="banner3" alt="">
+            </van-swipe-item>
           </van-swipe>
           <div class="flex">
             <div class="card m-r-2">
@@ -62,6 +70,10 @@ export default {
       value1: 0,
       value2: 'a',
       goodsList: [],
+      banner: require('../../../static/banner1.jpg'),
+      banner1: require('../../../static/banner2.jpg'),
+      banner2: require('../../../static/banner3.jpg'),
+      banner3: require('../../../static/banner4.jpg'),
       option1: [
         { text: '全部商品', value: 0 },
         { text: '新款商品', value: 1 },
@@ -114,7 +126,7 @@ export default {
     },
     detail(params) {
       this.$router.push({path: `/market/${params}`})
-    }
+    },
   }
 }
 </script>
@@ -123,11 +135,16 @@ export default {
   .my-swipe .van-swipe-item {
     color: #fff;
     font-size: 20px;
-    line-height: 200px;
+    // line-height: 200px;
+    height: 200px;
     text-align: center;
-    background-color: #e03500;
+    // background-color: #e03500;
     outline: none;
     border-radius: 6px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .body{
     margin: 0 16px;

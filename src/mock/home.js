@@ -43,15 +43,20 @@ const mockdata = req => {
 */
 const newsList = req => {
   let data = [];
+  let image = [
+    'https://p3.pstatp.com/list/pgc-image/RyOIk8l2JkQW9W',
+    'https://p3.pstatp.com/list/pgc-image/fb19e0240d8a4b728dad03673d9be9a0',
+    'https://p3.pstatp.com/list/pgc-image/RyNyZda76ng56X',
+    'http://p6-tt-ipv6.byteimg.com/img/pgc-image/c2e495c2efd8442db9258578008a055b~tplv-tt-cs0:640:360.jpg',
+    'https://p3.pstatp.com/list/pgc-image/d363caec74c144c38eed03463c01066b',
+    'https://p3.pstatp.com/list/pgc-image/RyJ7ViCHTjPPno',
+    'https://p3.pstatp.com/list/pgc-image/RybPFGFIPEXahn',
+    'https://p3.pstatp.com/list/pgc-image/565d2844cd1d4053b2aab6bd4c1d50f6'
+  ];
   for(let i=0;i<10;i++) {
-    let image = [];
-    for (let i=0;i<10;i++) {
-      let arrimg = Random.dataImage('300x300')
-      image.push(arrimg)
-    }
     let res = {
       id: Random.natural(0, 100),
-      img: Random.dataImage('300x300'),
+      img: Random.pick(image),
       title: Random.ctitle(10, 50),
       time: Random.date() + ' ' + Random.time(), // 随机生成年月日 + 时间
       author: Random.ctitle(2, 10),
