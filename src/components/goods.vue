@@ -1,25 +1,32 @@
 <template>
-  <div class="goods_list">
-    <div class="goods_card" v-for="item in goodsList" @click="btnEvent(item.id)" :key="item.price">
-      <div class="goods_img">
-        <img :src="item.goodsImg" alt="">
-      </div>
-      <div class="goods_card_title">{{item.title}}</div>
-      <div class="flex goods_msg">
-        <div class="flex1">￥{{item.price}}</div>
-        <div>{{item.total}}</div>
-      </div>
-      <div class="flex goods_footer">
-        <img :src="item.avatar" alt="">
-        <div class="flex1 p-l-8 text-over-nowrap goods_footer_name">{{item.name}}</div>
+  <div>
+     <div class="goods_list" v-if="goodsList.length>0">
+      <div class="goods_card" v-for="item in goodsList" @click="btnEvent(item.id)" :key="item.price">
+        <div class="goods_img">
+          <img :src="item.goodsImg" alt="">
+        </div>
+        <div class="goods_card_title">{{item.title}}</div>
+        <div class="flex goods_msg">
+          <div class="flex1">￥{{item.price}}</div>
+          <div>{{item.total}}</div>
+        </div>
+        <div class="flex goods_footer">
+          <img :src="item.avatar" alt="">
+          <div class="flex1 p-l-8 text-over-nowrap goods_footer_name">{{item.name}}</div>
+        </div>
       </div>
     </div>
+    <van-empty v-else description=""></van-empty>
   </div>
 </template>
 
 <script>
+import { Empty } from 'vant';
 export default {
   name: 'goods',
+  components: {
+    [Empty.name]: Empty
+  },
   data() {
     return {}
   },

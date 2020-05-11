@@ -100,7 +100,7 @@ export default new Router({
     {
       path: "/market/:id",
       name: "marketDetail",
-      meta: {},
+      meta: { keepAlive: false },
       component: () => import("@/views/gridPage/detail.vue")
     },
     {
@@ -109,5 +109,6 @@ export default new Router({
       meta: { keepAlive: true },
       component: () => import("@/components/404.vue")
     }
-  ]
+  ],
+  scrollBehavior: () => ({y: 0}),
 })

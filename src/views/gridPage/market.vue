@@ -113,8 +113,7 @@ export default {
       this.$router.push({path: "/"})
     },
     detail(params) {
-      console.log(params)
-      this.$router.push({path: `/market/:${params}`})
+      this.$router.push({path: `/market/${params}`})
     }
   }
 }
