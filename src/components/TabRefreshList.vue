@@ -1,3 +1,15 @@
+<!-- 使用方法 传入请求参数 请求URL即可-->
+<!--  
+  <tab-refresh-list requestUrl="/market/list">
+    <template v-slot="{ list }">
+      .....
+    </template>
+  </tab-refresh-list>
+
+  [!必填] [?非必填]
+  requestUrl: 请求api [!]
+  tabindex: tabs导航 [?]
+-->
 <template>
   <div class="">
     <van-pull-refresh v-model="refresh" @refresh="onRefresh">
