@@ -10,7 +10,7 @@
       <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="volume-o">
         通知内容
       </van-notice-bar>
-      <van-grid clickable :column-num="4">
+      <van-grid clickable :column-num="4" :border="false">
         <van-grid-item icon="icon iconfont icon-ershou" text="淘市场" to="market" />
         <van-grid-item icon="icon iconfont icon-ershoushichang" text="小卖部" to="shop" />
         <van-grid-item icon="icon iconfont icon-baoxiu" text="报修服务" to="repairService" />
@@ -20,14 +20,13 @@
         <van-grid-item icon="icon iconfont icon-dibudaohanglan-" text="失物招领" to="vanTMobileHtml" />
         <van-grid-item icon="icon iconfont icon-gonggao" text="通知公告" to="announcement" />
       </van-grid>
-      <van-swipe :autoplay="5000" class="my-swipe" indicator-color="white">
-        <!-- <van-swipe-item v-for="(image, index) in images" :key="index">
-          <img v-lazy="image" />
-        </van-swipe-item> -->
-        <van-swipe-item v-bgColor>1</van-swipe-item>
-        <van-swipe-item>2</van-swipe-item>
-        <van-swipe-item>3</van-swipe-item>
-        <van-swipe-item>4</van-swipe-item>
+      <van-swipe :autoplay="5000" class="my-swipe" indicator-color="#39a9ed">
+        <van-swipe-item v-for="(item,index) in images" :key="index">
+          <van-image
+            fit="cover"
+            :src="item"
+          />
+        </van-swipe-item>
       </van-swipe>
       <van-cell title="叽喳叽喳" icon="location-o" />
       <sc-froum :froumList="froumList"></sc-froum>
@@ -38,7 +37,7 @@
 </template>
 
 <script>
-import { Icon } from 'vant';
+import { Icon,Image as VanImage } from 'vant';
 import { Search } from 'vant';
 import { PullRefresh } from 'vant';
 import { Toast } from 'vant';
@@ -66,7 +65,9 @@ export default {
     [Cell.name]: Cell,
     [Icon.name]: Icon,
     [Tab.name]: Tab,
-    [Tabs.name]: Tabs
+    [Tabs.name]: Tabs,
+    [Image.name]: Image,
+    [VanImage.name]: VanImage
   },
   mixins: [scrollTop],
   data() {
@@ -75,8 +76,10 @@ export default {
       isLoading: false,
       value: '',
       images: [
-        'https://img.yzcdn.cn/vant/apple-1.jpg',
-        'https://img.yzcdn.cn/vant/apple-2.jpg',
+        require('../../assets/image/home4.jpg'),
+        require('../../assets/image/home1.jpg'),
+        require('../../assets/image/home2.jpg'),
+        require('../../assets/image/home3.jpg')
       ],
       newsList: [],
       froumList: [],
@@ -114,7 +117,7 @@ export default {
 .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;
-  line-height: 150px;
+  height: 200px;
   text-align: center;
   background-color: #39a9ed;
 }
