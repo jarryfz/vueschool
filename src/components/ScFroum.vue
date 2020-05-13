@@ -42,6 +42,7 @@ export default {
   display: flex;
   overflow: hidden;
   padding: 3px 16px;
+  background: #fff;
   .sc_forum_avatar {
     width: 32px;
     height: 32px;

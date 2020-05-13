@@ -2,7 +2,7 @@
   <div> 
     <div class="sc_news_list" v-for="(item, index) in newsList" :key="index">
       <div class="sc_news_left">
-        <img :src="item.img">
+        <van-image fit="cover" :src="item.img" />
       </div>
       <div class="sc_news_right">
         <div class="sc_news_right_title">{{ item.title }}</div>
@@ -19,8 +19,12 @@
 </template>
 
 <script>
+import { Image } from 'vant';
 export default {
   name: 'ScNewsList',
+  components: {
+    [Image.name]: Image
+  },
   data () {
     return {}
   },
@@ -41,6 +45,7 @@ export default {
   align-items: center;
   justify-items: center;
   padding: 10px 15px;
+  background: #fff;
   &::after {
     position: absolute;
     box-sizing: border-box;
