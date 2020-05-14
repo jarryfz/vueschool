@@ -9,18 +9,9 @@
     <div class="main-content">
       <tab-refresh-list requestUrl="/market/list">
         <template v-slot="{ list }">
-          <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
-            <van-swipe-item>
-              <img :src="banner" alt="">
-            </van-swipe-item>
-            <van-swipe-item>
-              <img :src="banner1" alt="">
-            </van-swipe-item>
-            <van-swipe-item>
-              <img :src="banner2" alt="">
-            </van-swipe-item>
-            <van-swipe-item>
-              <img :src="banner3" alt="">
+          <van-swipe class="my-swipe" :autoplay="5000" indicator-color="#39a9ed">
+            <van-swipe-item v-for="(item,index) in bannerList" :key="index">
+              <img :src="item" alt="">
             </van-swipe-item>
           </van-swipe>
           <div class="flex">
@@ -70,10 +61,12 @@ export default {
       value1: 0,
       value2: 'a',
       goodsList: [],
-      banner: require('../../../static/banner1.jpg'),
-      banner1: require('../../../static/banner2.jpg'),
-      banner2: require('../../../static/banner3.jpg'),
-      banner3: require('../../../static/banner4.jpg'),
+      bannerList: [
+        require('../../../static/banner1.jpg'),
+        require('../../../static/banner2.jpg'),
+        require('../../../static/banner3.jpg'),
+        require('../../../static/banner4.jpg')
+      ], 
       option1: [
         { text: '全部商品', value: 0 },
         { text: '新款商品', value: 1 },
