@@ -104,6 +104,12 @@ export default new Router({
       component: () => import("@/views/gridPage/detail.vue")
     },
     {
+      path: "/vanTMobileHtml/:id",
+      name: "vanTMobileHtmlDetail",
+      meta: { keepAlive: false },
+      component: () => import("@/views/gridPage/details/vanTMobileHtmlDetail.vue")
+    },
+    {
       path: '*',
       name: '404',
       meta: { keepAlive: true },
