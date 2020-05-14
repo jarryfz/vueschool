@@ -14,7 +14,7 @@
       <tab-refresh-list requestUrl="">
         <template v-slot="{ list }">
           <div class="list_wrap">
-            <div class="list_item" v-for="i in 10" :key="i">
+            <div class="list_item" v-for="i in 10" :key="i" @click="goDetail(i)">
               <div class="list_item_head">
                 <div class="list_item_head_avatar">
                   <img src="../../assets/image/avatar_boy.png" alt="">
@@ -24,7 +24,7 @@
                   <div class="head_info_time">1小时前</div>
                 </div>
                 <div>
-                  <van-tag type="primary">找物</van-tag>
+                  <van-tag type="primary">寻失物</van-tag>
                 </div>
               </div>
               <div class="list_item_content">
@@ -32,9 +32,8 @@
                 有些心智不成熟的小朋友一不留神就有可能会被一些坏东西煽动利用，成为网络暴力的主力军，或滋生校园霸凌等恶性事件。年纪小的孩子们还是要以学习优 ...
               </div>
               <div class="list_item_pic">
-                <img src="../../assets/image/home.jpg" alt="">
-                <img src="../../assets/image/home1.jpg" alt="">
-                <img src="../../assets/image/home2.jpg" alt="">
+                <van-image fit="cover" :src="img2" />
+                <van-image fit="cover" :src="img1" />
               </div>
             </div>
           </div>
@@ -58,10 +57,17 @@ export default {
   },
   mixins: [navbar],
   data() {
-    return {}
+    return {
+      img2: require('../../assets/image/home.jpg'),
+      img1: require('../../assets/image/home3.jpg')
+    }
   },
   methods: {
-    
+    goDetail(row) {
+      this.$router.push({
+        path: `/vanTMobileHtml/${row}`,
+      })
+    }
   }
 }
 </script>
@@ -75,7 +81,7 @@ export default {
       content: '';
       height: 1px;
       display: block;
-      background: #cccccc;
+      background: #f4f4f4;
       margin: 8px 0;
     }
     .list_item_head {
@@ -112,11 +118,7 @@ export default {
     .list_item_pic {
       display: -webkit-flex;
       display: flex;
-      flex-wrap: wrap;
-      img {
-        width: 33.3333%;
-        
-      }
+      justify-content: space-between;
     }
   }
 }
