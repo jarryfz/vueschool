@@ -8,9 +8,9 @@
     />
     <div class="main-content">
       <div>
-        <span>firstName:{{firstName}}</span>
+        <span>firstName:{{ firstName }}</span>
         <span>...</span>
-        <span>lastName:{{lastName}}</span>
+        <span>lastName:{{ lastName }}</span>
       </div>
       <div class="id">
         fullName: {{ fullName }}
@@ -72,15 +72,12 @@ export default {
           object._data.username = value;
         }
       })
+      document.createDocumentFragment
       document.addEventListener('input', function(e) {
         object._data.username = e.target.value;
         document.querySelector('.show').innerHTML = object._data.username
       })
     })
-    
-    // console.log(object._data)
-    // object._data.username = 'bar';
-    // console.log(object._data)
   },
   methods: {
     change() {
