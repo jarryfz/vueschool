@@ -8,21 +8,27 @@ import "./style/icon.css";
 import "./style/common.scss";
 import "./directive/index.js";
 
+import './mixins/navbar.js';
+
 axios.defaults.baseURL = "http://mockjs.com/api"; // 设置默认请求的url
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
 import { 
   Lazyload,
+  Toast,
   Image,
   NavBar,
+  Tag,
   Empty,
   PullRefresh,
   List,
   Icon,
   GoodsAction,
   GoodsActionIcon,
-  GoodsActionButton
+  GoodsActionButton,
+  DropdownMenu,
+  DropdownItem
 } from "vant";
 
 Vue.use(Lazyload, {
@@ -30,14 +36,18 @@ Vue.use(Lazyload, {
   attempt: 3
 });
 Vue.use(Image)
+.use(Toast)
 .use(NavBar)
+.use(Tag)
 .use(Empty)
 .use(PullRefresh)
 .use(List)
 .use(Icon)
 .use(GoodsAction)
 .use(GoodsActionIcon)
-.use(GoodsActionButton);
+.use(GoodsActionButton)
+.use(DropdownMenu)
+.use(DropdownItem);
 
 new Vue({
   router,
