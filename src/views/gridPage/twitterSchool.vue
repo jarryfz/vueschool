@@ -11,12 +11,12 @@
       <van-tabs v-model="active" background="#FFFFFF" animated title-active-color="#07c160" color="#07c160" @click="tabClick">
         <van-tab
           v-for="(item,index) in tabList"
-          :key="index" 
+          :key="index"
           :title="item.title"
         >
           <tab-refresh-list requestUrl="/twitter" :tabindex="active">
             <template v-slot="{ list }">
-              <sc-froum :froumList="list"></sc-froum>
+              <sc-froum :froumList="list" @onScForm="onScForm"></sc-froum>
             </template>
           </tab-refresh-list>
         </van-tab>
@@ -29,7 +29,7 @@
 import { Tab, Tabs, NavBar } from 'vant';
 import tabRefreshList from "@/components/TabRefreshList.vue";
 import ScFroum from "@/components/ScFroum.vue";
-import navbar from "@/mixins/navbar.js"
+import navbar from "@/mixins/navbar.js";
 export default {
   name: "twitterSchool",
   components: {
@@ -54,6 +54,9 @@ export default {
   methods: {
     tabClick(index) {
       console.log(index)
+    },
+    onScForm(id) {
+      this.$router.push({path: `/twitterDetail/${id}`})
     }
   }
 }

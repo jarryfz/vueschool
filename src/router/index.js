@@ -110,6 +110,12 @@ export default new Router({
       component: () => import("@/views/gridPage/details/vanTMobileHtmlDetail.vue")
     },
     {
+      path: '/twitterDetail/:id',
+      name: 'twitterDetail',
+      meta: { keepAlive: false },
+      component: () => import('@/views/gridPage/details/twitterDetail.vue')
+    },
+    {
       path: '*',
       name: '404',
       meta: { keepAlive: true },

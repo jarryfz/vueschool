@@ -1,6 +1,6 @@
 <template >
   <div>
-    <div class="sc_forum" v-for="(item,index) in froumList" :key="index">
+    <div class="sc_forum" v-for="(item,index) in froumList" :key="index" @click="onScForm(item.id)">
       <div class="sc_forum_avatar">
         <img :src="item.avatar" alt="">
       </div>
@@ -34,6 +34,11 @@ export default {
       default: () => {}
     }
   },
+  methods: {
+    onScForm(id) {
+      this.$emit('onScForm',id)
+    }
+  }
 }
 </script>
 
