@@ -8,7 +8,7 @@ import "./style/icon.css";
 import "./style/common.scss";
 import "./directive/index.js";
 
-import './mixins/navbar.js';
+import navbarBack from './mixins/navbar.js';
 
 axios.defaults.baseURL = "http://mockjs.com/api"; // 设置默认请求的url
 Vue.prototype.$http = axios;
@@ -49,6 +49,7 @@ Vue.use(Image)
 .use(DropdownMenu)
 .use(DropdownItem);
 
+Vue.mixin(navbarBack);
 new Vue({
   router,
   store,
