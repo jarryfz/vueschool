@@ -11,14 +11,14 @@
         通知内容
       </van-notice-bar>
       <van-grid clickable :column-num="4" :border="false">
-        <van-grid-item icon="icon iconfont icon-ershou" text="淘市场" to="market" />
-        <van-grid-item icon="icon iconfont icon-ershoushichang" text="小卖部" to="shop" />
-        <van-grid-item icon="icon iconfont icon-baoxiu" text="报修服务" to="repairService" />
-        <van-grid-item icon="icon iconfont icon-fengjing" text="叽喳校园" to="twitter-school" />
-        <van-grid-item icon="icon iconfont icon-iconcard" text="缴费中心" to="paymentCenter" />
-        <van-grid-item icon="icon iconfont icon-kebiao" text="我的课表" to="myClassSchedule" />
-        <van-grid-item icon="icon iconfont icon-dibudaohanglan-" text="失物招领" to="vanTMobileHtml" />
-        <van-grid-item icon="icon iconfont icon-gonggao" text="通知公告" to="announcement" />
+        <van-grid-item
+          v-for="item in gridItems"
+          :key="item.text"
+          :icon="item.icon"
+          :text="item.text"
+          :to="item.path"
+        >
+        </van-grid-item>
       </van-grid>
       <van-swipe :autoplay="5000" class="my-swipe" indicator-color="#39a9ed">
         <van-swipe-item v-for="(item,index) in images" :key="index">
@@ -85,6 +85,16 @@ export default {
       froumList: [],
       active: 0,
       scroll: '',
+      gridItems: [
+        { icon: 'icon iconfont icon-ershou', text: '淘市场', path: 'market' },
+        { icon: 'icon iconfont icon-ershoushichang', text: '小卖部', path: 'shop' },
+        { icon: 'icon iconfont icon-fengjing', text: '叽喳校园', path: 'twitter-school' },
+        { icon: 'icon iconfont icon-dibudaohanglan-', text: '失物招领', path: 'vanTMobileHtml' },
+        { icon: 'icon iconfont icon-kebiao', text: '社团活动', path: 'club-activite' },
+        { icon: 'icon iconfont icon-gonggao', text: '通知公告', path: 'announcement' },
+        { icon: 'icon iconfont icon-baoxiu', text: '报修服务', path: 'repairService' },
+        { icon: 'icon iconfont icon-iconcard', text: '新闻中心', path: '' }
+      ]
     }
   },
   created() {

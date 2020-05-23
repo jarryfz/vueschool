@@ -3,6 +3,9 @@
     <div class="person_center">
       <div class="person_info">
         <img src="../../assets/image/avatar_boy.png">
+        <div>
+          风一样的鸭子
+        </div>
       </div>
     </div>
     <div class="m-t-n40 sc_card">
@@ -14,30 +17,18 @@
         <div class="sc_card_item_content item_bg1">饭卡</div>
       </div>
     </div>
-    <div class="sc_card">
+    <div class="sc_card" v-for="item in mineCenterCard" :key="item">
       <div class="sc_card_cell">
-        <span>我的收藏</span>
+        <span>{{item.title}}</span>
       </div>
       <van-grid :border="false">
         <van-grid-item
-          v-for="value in 4"
-          :key="value"
-          icon="photo-o"
-          text="文字"
-        />
-      </van-grid>
-    </div>
-    <div class="sc_card">
-      <div class="sc_card_cell">
-        <span>我的发布</span>
-      </div>
-      <van-grid :border="false">
-        <van-grid-item
-          v-for="value in 4"
-          :key="value"
-          icon="photo-o"
-          text="文字"
-        />
+          v-for="o in item.gridItems"
+          :key="o.text"
+          :icon="o.icon"
+          :text="o.text"
+          :to="o.path"
+        ></van-grid-item>
       </van-grid>
     </div>
   </div>
@@ -53,7 +44,37 @@ export default {
     [Icon.name]: Icon
   },
   data() {
-    return {}
+    return {
+      mineCenterCard: [
+        {
+          title: '应用中心',
+          gridItems: [
+            { icon: 'photo-o', text: '缴费中心', path: '' },
+            { icon: 'photo-o', text: '我的课表', path: '' },
+            { icon: 'photo-o', text: '我的社团', path: '' },
+            { icon: 'photo-o', text: '购物车', path: '' }
+          ]
+        },
+        {
+          title: '收藏中心',
+          gridItems: [
+            { icon: 'photo-o', text: '叽喳校园', path: '' },
+            { icon: 'photo-o', text: '淘市场', path: '' },
+            { icon: 'photo-o', text: '小卖铺', path: '' },
+            { icon: 'photo-o', text: '资讯', path: '' },
+          ]
+        },
+        {
+          title: '发布中心',
+          gridItems: [
+            { icon: 'photo-o', text: '叽喳校园', path: '' },
+            { icon: 'photo-o', text: '淘市场', path: '' },
+            { icon: 'photo-o', text: '小卖铺', path: '' },
+            { icon: 'photo-o', text: '失物招领', path: '' },
+          ]
+        }
+      ],
+    }
   },
   created() {},
   methods: {}
