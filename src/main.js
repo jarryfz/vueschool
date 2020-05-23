@@ -24,11 +24,14 @@ import {
   PullRefresh,
   List,
   Icon,
+  Cell,
   GoodsAction,
   GoodsActionIcon,
   GoodsActionButton,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Grid,
+  GridItem
 } from "vant";
 
 Vue.use(Lazyload, {
@@ -43,11 +46,14 @@ Vue.use(Image)
 .use(PullRefresh)
 .use(List)
 .use(Icon)
+.use(Cell)
 .use(GoodsAction)
 .use(GoodsActionIcon)
 .use(GoodsActionButton)
 .use(DropdownMenu)
-.use(DropdownItem);
+.use(DropdownItem)
+.use(Grid)
+.use(GridItem);
 
 Vue.mixin(navbarBack);
 new Vue({

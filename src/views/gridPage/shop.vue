@@ -10,11 +10,10 @@
 </template>
 
 <script>
-import { NavBar, } from 'vant';
 export default {
   name: "shop",
   components: {
-    [NavBar.name]: NavBar,
+    
   },
   data() {
     return {
@@ -25,21 +24,7 @@ export default {
    
   },
   methods: {
-    onClickLeft() {
-      this.$router.push({path: "/"})
-    },
-    add() {
-      this.$store.commit('add')
-    },
-    reduction() {
-      this.$store.commit('reduction')
-    },
-    addFun() {
-      this.$store.dispatch('addFun')
-    },
-    reductionFun() {
-      this.$store.dispatch('reductionFun')
-    }
+    
   }
 }
 </script>
