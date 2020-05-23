@@ -1,6 +1,6 @@
 <template>
   <div>
-     <div class="goods_list" v-if="goodsList.length>0">
+     <div class="goods_list">
       <div class="goods_card" v-for="item in goodsList" @click="btnEvent(item.id)" :key="item.price">
         <div class="goods_img">
           <img :src="item.goodsImg" alt="">
@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-    <van-empty v-else description=""></van-empty>
   </div>
 </template>
 
