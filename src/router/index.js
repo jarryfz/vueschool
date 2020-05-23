@@ -72,7 +72,13 @@ export default new Router({
       name: "campusScenery",
       meta: { keepAlive: true },
       component: () => import("@/views/gridPage/campusScenery.vue")
-    },  
+    },
+    {
+      path: "/club-activite",
+      name: "clubActivite",
+      meta: { keepAlive: true },
+      component: () => import("@/views/gridPage/clubActivite.vue")
+    },
     {
       path: "/paymentCenter",
       name: "paymentCenter",
