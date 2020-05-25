@@ -31,7 +31,8 @@ import {
   DropdownMenu,
   DropdownItem,
   Grid,
-  GridItem
+  GridItem,
+  Popup
 } from "vant";
 
 Vue.use(Lazyload, {
@@ -53,7 +54,8 @@ Vue.use(Image)
 .use(DropdownMenu)
 .use(DropdownItem)
 .use(Grid)
-.use(GridItem);
+.use(GridItem)
+.use(Popup);
 
 Vue.mixin(navbarBack);
 new Vue({

@@ -8,7 +8,7 @@
     />
     <div class="main-content">
       <van-grid direction="horizontal" :column-num="3">
-        <van-grid-item icon="photo-o" text="社团" />
+        <van-grid-item icon="photo-o" text="社团" @click="showPopup" />
         <van-grid-item icon="photo-o" text="活动" />
         <van-grid-item icon="photo-o" text="比赛" />
       </van-grid>
@@ -26,6 +26,12 @@
         </div>
       </div>
     </div>
+    <van-popup v-model="show" position="left" closeable class="van_popup">
+      <div class="popup_content">
+        <div class="popup_content_left">zuo</div>
+        <div class="popup_content_right">you</div>
+      </div>
+    </van-popup>
   </div>
 </template>
 
@@ -33,7 +39,14 @@
 export default {
   name: 'clubActivite',
   data() {
-    return {}
+    return {
+      show: false
+    }
+  },
+  methods: {
+    showPopup() {
+      this.show = true;
+    }
   }
 }
 </script>
@@ -58,4 +71,26 @@ export default {
     // box-shadow: 0 0 5px #CCCCCC;
   }
 }
+.van_popup {
+  width: 100%;
+  height: 100%;
+  &::before {
+    content: '';
+    height: 44px;
+    display: block;
+  }
+  .popup_content {
+    padding: 0 16px;
+    display: flex;
+    .popup_content_left {
+      flex: 1;
+      border-right: 1px solid #eaeaea;
+    }
+    .popup_content_right {
+      flex: 2;
+      padding-left: 8px;
+    }
+  }
+}
+
 </style>
