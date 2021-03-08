@@ -23,7 +23,7 @@ export default {
 </script>
 <style lang="scss">
 html,body {
-  height: calc(100% - 50px);
+  height: 100%;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

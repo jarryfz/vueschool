@@ -52,6 +52,6 @@ export default {
   font-size: 12px !important;
 }
 .views {
-  padding-bottom: 50px;
+  height: calc(100% - 50px);
 }
 </style>

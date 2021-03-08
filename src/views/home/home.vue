@@ -25,11 +25,11 @@
         />
       </van-swipe-item>
     </van-swipe>
-    <van-grid>
+    <van-grid :border="false" :icon-size="50">
       <van-grid-item
         v-for="(item,index) in gridItems"
         :key="index"
-        :icon="item.icon" 
+        :icon="item.icon"
         :text="item.text"
         :to="item.path" 
       />
@@ -118,38 +118,41 @@ export default {
       scrollTopValue: -1,
       ANCHOR_SCROLL_TOP: 160,
       gridItems: [
-        { icon: 'icon iconfont icon-ershou', text: '淘市场', path: 'market' },
-        { icon: 'icon iconfont icon-ershoushichang', text: '小卖部', path: 'shop' },
-        { icon: 'icon iconfont icon-fengjing', text: '叽喳校园', path: 'twitter-school' },
-        { icon: 'icon iconfont icon-dibudaohanglan-', text: '失物招领', path: 'vanTMobileHtml' },
-        { icon: 'icon iconfont icon-kebiao', text: '社团活动', path: 'club-activite' },
-        { icon: 'icon iconfont icon-gonggao', text: '通知公告', path: 'announcement' },
-        { icon: 'icon iconfont icon-baoxiu', text: '报修服务', path: 'repairService' },
-        { icon: 'icon iconfont icon-iconcard', text: '新闻中心', path: '' }
+        { icon: require('../../assets/image/home/item1.svg'), text: '淘市场', path: 'market' },
+        { icon: require('../../assets/image/home/item2.svg'), text: '小卖部', path: 'shop' },
+        { icon: require('../../assets/image/home/item3.svg'), text: '叽喳校园', path: 'twitter-school' },
+        { icon: require('../../assets/image/home/item4.svg'), text: '失物招领', path: 'vanTMobileHtml' },
+        { icon: require('../../assets/image/home/item5.svg'), text: '社团活动', path: 'club-activite' },
+        { icon: require('../../assets/image/home/item6.svg'), text: '通知公告', path: 'announcement' },
+        { icon: require('../../assets/image/home/item7.svg'), text: '报修服务', path: 'repairService' },
+        { icon: require('../../assets/image/home/item2.svg'), text: '新闻中心', path: '' }
       ]
     }
   },
   mounted() {
     this.queryList();
     this.navBarCurrentSlotStyle = this.naBarSlotStyle.normal
-    window.addEventListener("scroll", this.onScrollChange);
+    let ql = document.querySelector('.j-home')
+    ql.addEventListener('scroll',this.onScrollChange)
   },
 	beforeDestroy() {
-			window.removeEventListener("scroll", this.onScrollChange)
+    let ql = document.querySelector('.j-home')
+		ql.removeEventListener("scroll", this.onScrollChange)
 	},
   methods: {
     onSearch() {
       console.log(this.value)
     },
 		onScrollChange($event) {
-      this.scrollTopValue = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      this.scrollTopValue = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || document.querySelector('.j-home').scrollTop;
       let opacity = this.scrollTopValue / this.ANCHOR_SCROLL_TOP
       if (opacity >= 1) {
         this.navBarCurrentSlotStyle = this.naBarSlotStyle.highlight
+        this.searchBackground = '#ffffff'
       } else {
+        this.searchBackground = 'transparent'
         this.navBarCurrentSlotStyle = this.naBarSlotStyle.normal
       }
-
       this.navBarStyle.backgroundColor = "rgba(255, 255, 255, " + opacity + ")"
     },
     queryList() {
@@ -168,6 +171,8 @@ export default {
 
 <style lang="scss" scoped>
 .j-home {
+  height: 100%;
+  overflow-y: auto;
   .j-home-header {
     height: 50px;
     position: fixed;
