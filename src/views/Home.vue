@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style>
-.home {
+.home,.views {
   height: 100%;
 }
 .van-tabbar-item__text {

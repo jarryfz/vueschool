@@ -1,40 +1,43 @@
 <template>
-  <div class="">
-    <div id="search-box">
-      <van-search
-        v-model="value"
-        shape="round"
-        :background="searchBackground"
-        placeholder="请输入搜索关键词"
-      ></van-search>
+  <div class="j-home">
+    <div class="j-home-header">
+      <navigation-bar :isShowBack="false" :navBarStyle="navBarStyle">
+        <template v-slot:nav-center>
+          <van-search
+            v-model="value"
+            shape="round"
+            show-action
+            :background="searchBackground"
+            placeholder="请输入搜索关键词"
+          >
+          <template #action>
+            <div @click="onSearch">搜索</div>
+          </template>
+          </van-search>
+        </template>
+      </navigation-bar>
     </div>
-    <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
-      <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="volume-o">
-        通知内容
-      </van-notice-bar>
-      <van-grid clickable :column-num="4" :border="false">
-        <van-grid-item
-          v-for="item in gridItems"
-          :key="item.text"
-          :icon="item.icon"
-          :text="item.text"
-          :to="item.path"
-        >
-        </van-grid-item>
-      </van-grid>
-      <van-swipe :autoplay="5000" class="my-swipe" indicator-color="#39a9ed">
-        <van-swipe-item v-for="(item,index) in images" :key="index">
-          <van-image
-            fit="cover"
-            :src="item"
-          />
-        </van-swipe-item>
-      </van-swipe>
-      <van-cell title="叽喳叽喳" icon="location-o" />
-      <sc-froum :froumList="froumList"></sc-froum>
-      <van-cell title="校内资讯" icon="location-o" />
-      <sc-news-list :newsList="newsList"></sc-news-list>
-    </van-pull-refresh>
+    <van-swipe class="my-swipe" indicator-color="#39a9ed">
+      <van-swipe-item v-for="(item,index) in images" :key="index">
+        <van-image
+          fit="cover"
+          :src="item"
+        />
+      </van-swipe-item>
+    </van-swipe>
+    <van-grid>
+      <van-grid-item
+        v-for="(item,index) in gridItems"
+        :key="index"
+        :icon="item.icon" 
+        :text="item.text"
+        :to="item.path" 
+      />
+    </van-grid>
+    <van-cell title="叽喳叽喳" icon="location-o" />
+    <sc-froum :froumList="froumList"></sc-froum>
+    <van-cell title="校内资讯" icon="location-o" />
+    <sc-news-list :newsList="newsList"></sc-news-list>
   </div>
 </template>
 
@@ -49,6 +52,7 @@ import { NoticeBar } from 'vant';
 import { Cell } from 'vant';
 import { Tab, Tabs } from 'vant';
 import ScNewsList from '@/components/ScNewsList.vue';
+import NavigationBar from '@/components/NavigationBar/index'
 import scrollTop from "@/mixins/scrollTop.js";
 import ScFroum from "@/components/ScFroum.vue";
 export default {
@@ -56,6 +60,7 @@ export default {
   components: {
     ScNewsList,
     ScFroum,
+    NavigationBar,
     [PullRefresh.name]: PullRefresh,
     [Toast.name]: Toast,
     [Grid.name]: Grid,
@@ -78,16 +83,40 @@ export default {
       count: 0,
       isLoading: false,
       value: '',
+      style: {background: `rgba(26, 212, 115,1`},
+      opacity: 0,
+      offsetTop: 0,
       images: [
-        require('../../assets/image/home4.jpg'),
         require('../../assets/image/home1.jpg'),
         require('../../assets/image/home2.jpg'),
+        require('../../assets/image/home5.jpg'),
         require('../../assets/image/home3.jpg')
       ],
       newsList: [],
       froumList: [],
       active: 0,
       scroll: '',
+      naBarSlotStyle: {
+        normal: {
+          search: {
+            bgColor: '#ffffff',
+            hintColor: '#999999',
+          },
+        },
+        highlight: {
+            search: {
+                bgColor: '#d7d7d7',
+                hintColor: '#eee',
+            },
+        }
+      },
+      navBarCurrentSlotStyle: {},
+      navBarStyle: {
+          backgroundColor: '',
+          position: 'fixed',
+      },
+      scrollTopValue: -1,
+      ANCHOR_SCROLL_TOP: 160,
       gridItems: [
         { icon: 'icon iconfont icon-ershou', text: '淘市场', path: 'market' },
         { icon: 'icon iconfont icon-ershoushichang', text: '小卖部', path: 'shop' },
@@ -102,30 +131,26 @@ export default {
   },
   mounted() {
     this.queryList();
-		window.addEventListener("scroll", this.handleScroll);
+    this.navBarCurrentSlotStyle = this.naBarSlotStyle.normal
+    window.addEventListener("scroll", this.onScrollChange);
   },
 	beforeDestroy() {
-		window.removeEventListener("scroll", this.handleScroll);
+			window.removeEventListener("scroll", this.onScrollChange)
 	},
   methods: {
-		handleScroll() {
-			let scrollTop =
-				window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-			let offsetTop = document.querySelector("#search-box").offsetTop;
-			//设置背景颜色的透明读
-			if (offsetTop && scrollTop) {
-				this.searchBackground = `rgba(255, 255, 255,${scrollTop / (scrollTop + 40)})`;
-			} else if (scrollTop == 0) {
-				this.searchBackground = "transparent";
-			}
-		},
-    onRefresh() {
-      setTimeout(() => {
-        Toast('刷新成功');
-        this.queryList();
-        this.count++;
-        this.isLoading = false;
-      }, 1000);
+    onSearch() {
+      console.log(this.value)
+    },
+		onScrollChange($event) {
+      this.scrollTopValue = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      let opacity = this.scrollTopValue / this.ANCHOR_SCROLL_TOP
+      if (opacity >= 1) {
+        this.navBarCurrentSlotStyle = this.naBarSlotStyle.highlight
+      } else {
+        this.navBarCurrentSlotStyle = this.naBarSlotStyle.normal
+      }
+
+      this.navBarStyle.backgroundColor = "rgba(255, 255, 255, " + opacity + ")"
     },
     queryList() {
       this.$http.post("/home/newsList").then(res => {
@@ -142,12 +167,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my-swipe .van-swipe-item {
-  color: #fff;
-  font-size: 20px;
-  height: 200px;
-  text-align: center;
-  background-color: #39a9ed;
+.j-home {
+  .j-home-header {
+    height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 11;
+  }
+  & .van-search {
+    width: 100%;
+  }
+  .my-swipe .van-swipe-item {
+    color: #fff;
+    font-size: 20px;
+    height: 200px;
+    text-align: center;
+    background-color: #39a9ed;
+    .van-image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .my-swipe:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -11px;
+    z-index: 1;
+    height: 20px;
+    width:100%; 
+    border-radius:100%;
+     background:#ffffff;
+  }
 }
 
 </style>
