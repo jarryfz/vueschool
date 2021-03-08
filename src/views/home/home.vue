@@ -1,11 +1,13 @@
 <template>
   <div class="">
-    <van-search
-      v-model="value"
-      shape="round"
-      background="#4fc08d"
-      placeholder="请输入搜索关键词"
-    ></van-search>
+    <div id="search-box">
+      <van-search
+        v-model="value"
+        shape="round"
+        :background="searchBackground"
+        placeholder="请输入搜索关键词"
+      ></van-search>
+    </div>
     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
       <van-notice-bar color="#1989fa" background="#ecf9ff" left-icon="volume-o">
         通知内容
@@ -72,6 +74,7 @@ export default {
   mixins: [scrollTop],
   data() {
     return {
+      searchBackground: 'transparent',
       count: 0,
       isLoading: false,
       value: '',
@@ -97,10 +100,25 @@ export default {
       ]
     }
   },
-  created() {
+  mounted() {
     this.queryList();
+		window.addEventListener("scroll", this.handleScroll);
   },
+	beforeDestroy() {
+		window.removeEventListener("scroll", this.handleScroll);
+	},
   methods: {
+		handleScroll() {
+			let scrollTop =
+				window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+			let offsetTop = document.querySelector("#search-box").offsetTop;
+			//设置背景颜色的透明读
+			if (offsetTop && scrollTop) {
+				this.searchBackground = `rgba(255, 255, 255,${scrollTop / (scrollTop + 40)})`;
+			} else if (scrollTop == 0) {
+				this.searchBackground = "transparent";
+			}
+		},
     onRefresh() {
       setTimeout(() => {
         Toast('刷新成功');

@@ -14,15 +14,6 @@
               <img :src="item" alt="">
             </van-swipe-item>
           </van-swipe>
-          <div class="flex">
-            <div class="card m-r-2">
-              jj
-            </div>
-            <div class="m-l-2 flex1">
-              <div class="card">m</div>
-              <div class="card">m</div>
-            </div>
-          </div>
           <div class="list">
             <goods :goodsList="list" @goodsDetailBtn="detail"></goods>
           </div>

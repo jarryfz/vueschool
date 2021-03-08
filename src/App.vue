@@ -4,12 +4,6 @@
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
-    <!-- <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000" route>
-      <van-tabbar-item replace to="/home" icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item replace to="/school-news" icon="search">校园资讯</van-tabbar-item>
-      <van-tabbar-item replace to="/twitter-school" icon="freinds-o">叽喳校园</van-tabbar-item>
-      <van-tabbar-item replace to="/mine" icon="setting-o">个人中心</van-tabbar-item>
-    </van-tabbar> -->
   </div>
 </template>
 
