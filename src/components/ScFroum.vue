@@ -1,32 +1,59 @@
 <template >
-  <div>
-    <div class="sc_forum" v-for="(item,index) in froumList" :key="index" @click="onScForm(item.id)">
-      <div class="sc_forum_avatar">
+  <div class="j-forum-body">
+    <div class="j-forum"
+      v-for="(item,index) in froumList"
+      :key="index"
+      @click="onScForm(item.id)"
+    >
+      <div class="header">
         <img :src="item.avatar" alt="">
+        <span>{{item.name}}</span>
       </div>
-      <div class="sc_forum_content">
-        <div class="sc_forum_content_title">{{ item.name }}</div>
-        <div class="sc_forum_content_row">
-          {{ item.content }}
+      <div class="main">
+        <div class="content">{{item.content}}</div>
+        <div
+          class="content-img-box"
+          :class="{[item.img.length < 5 ? `col-${item.img.length}` : 'col-4']: true}"
+        >
+          <van-image
+            :src="o"
+            v-for="(o,i) in item.img"
+            :key="i"
+          />
         </div>
-        <div class="sc_forum_content_img">
-          <van-image fit="cover" v-for="(o,i) in item.img" :key="i" :src="o" />
+        <div class="tag">
+          <van-tag plain round type="primary">{{item.tag}}</van-tag>
         </div>
-        <div class="sc_forum_content_footer">
-          <div>{{ item.time }}</div>
-          <div>{{ item.totalComment }}评论</div>
-        </div>
+      </div>
+      <div class="footer">
+        <van-row>
+          <van-col :span="12">
+            <div class="">
+              <van-icon name="good-job-o" />
+              <span>2</span>
+            </div>
+          </van-col>
+          <van-col :span="12">
+            <div>
+              <van-icon name="comment-o" />
+              <span>5</span>
+            </div>
+          </van-col>
+        </van-row>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Image } from 'vant';
+import { Image, Col, Row, Icon } from 'vant';
 export default {
   name: "ScFroum",
-    components: {
+  components: {
     [Image.name]: Image,
+    [Col.name]: Col,
+    [Row.name]: Row,
+    [Icon.name]: Icon
   },
   props: {
     froumList: {
@@ -43,6 +70,78 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.j-forum-body {
+  .j-forum {
+    margin: 10px 0px;
+    padding: 15px 15px 0;
+    // height: 100px;
+    background: #ffffff;
+    border-radius: 2px;
+    .header {
+      display: flex;
+      align-items: center;
+      color: #ccc;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      span {
+        padding-left: 10px;
+        font-size: 14px;
+      }
+    }
+    .main {
+      padding: 8px 0;
+      font-size: 14px;
+      line-height: 24px;
+      .content-img-box {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+        &.col-1 {
+          .van-image {
+            width: calc(60% - 10px);
+          }
+        }
+        &.col-2 {
+          .van-image {
+            width: calc(45% - 10px);
+          }
+        }
+        &.col-3 {
+          .van-image {
+            width: calc(40% - 10px);
+          }
+        }
+        &.col-4 {
+          .van-image {
+            width: calc(40% - 10px);
+          }
+        }
+        .van-image {
+          padding: 5px;
+          img {
+            flex: 0 1 auto;
+            margin-top: 4px;
+            max-width: 100%;
+            min-width: 110px;
+            cursor: zoom-in;
+            min-height: 110px;
+            max-height: 230px;
+            -o-object-fit: cover;
+            object-fit: cover;
+            padding: 5px 2px;
+          }
+        }
+      }
+      .tag {
+        padding: 5px 0;
+      }
+    }
+  }
+}
+
 .sc_forum {
   display: flex;
   overflow: hidden;
