@@ -8,9 +8,11 @@
       <div class="header">
         <img :src="item.avatar" alt="">
         <span>{{item.name}}</span>
+        <div class="header-time">{{item.time}}</div>
       </div>
       <div class="main">
-        <div class="content">{{item.content}}</div>
+        <div class="content" :class="isShowAll ? 'expansion' : item.content.length > 150 ? 'fold' : ''">{{item.content}}</div>
+        <div class="expansion-text" v-if="item.content.length > 150" @click="changeText(item.content)">{{isShowAll ? '折叠' : '展开'}}</div>
         <div
           class="content-img-box"
           :class="{[item.img.length < 5 ? `col-${item.img.length}` : 'col-4']: true}"
@@ -28,15 +30,15 @@
       <div class="footer">
         <van-row>
           <van-col :span="12">
-            <div class="">
+            <div class="footer-content">
               <van-icon name="good-job-o" />
-              <span>2</span>
+              <span class="footer-text">2</span>
             </div>
           </van-col>
           <van-col :span="12">
-            <div>
+            <div class="footer-content">
               <van-icon name="comment-o" />
-              <span>5</span>
+              <span class="footer-text">5</span>
             </div>
           </van-col>
         </van-row>
@@ -61,9 +63,17 @@ export default {
       default: () => {}
     }
   },
+  data() {
+    return {
+      isShowAll: false
+    }
+  },
   methods: {
     onScForm(id) {
       this.$emit('onScForm',id)
+    },
+    changeText(item) {
+      this.isShowAll === true ? this.isShowAll = false : this.isShowAll = true
     }
   }
 }
@@ -74,27 +84,49 @@ export default {
   .j-forum {
     margin: 10px 0px;
     padding: 15px 15px 0;
-    // height: 100px;
     background: #ffffff;
     border-radius: 2px;
     .header {
       display: flex;
       align-items: center;
       color: #ccc;
+      font-size: 14px;
       img {
         width: 30px;
         height: 30px;
         border-radius: 50%;
       }
       span {
-        padding-left: 10px;
-        font-size: 14px;
+        padding: 0 10px;
+        width: 210px;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+      }
+      .header-time {
+        
       }
     }
     .main {
       padding: 8px 0;
       font-size: 14px;
       line-height: 24px;
+      .content{
+        &.fold {
+          overflow: hidden;
+          -webkit-line-clamp: 5;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+        }
+        &.expansion {
+
+        }
+      }
+      .expansion-text {
+        color: #007fff;
+        margin-top: 5px;
+      }
       .content-img-box {
         display: flex;
         flex-wrap: wrap;
@@ -136,7 +168,19 @@ export default {
         }
       }
       .tag {
+        padding: 5px 0 0;
+      }
+    }
+    .footer {
+      .footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 5px 0;
+        .footer-text {
+          font-size: 14px;
+          margin-left: 5px;
+        }
       }
     }
   }

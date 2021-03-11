@@ -34,6 +34,19 @@
         :to="item.path" 
       />
     </van-grid>
+    <van-cell title="通知公告" icon="location-o" />
+    <van-cell-group>
+      <van-cell title="福州大学作为合作单位申报2020年度福建省科学技术奖项目公示">
+        <template v-slot:default>
+          name
+        </template>
+      </van-cell>
+      <van-cell title="电气工程与自动化学院2020年度研究生优秀新生奖学金申请汇总表" value="2021-2-18" />
+      <van-cell title="电气工程与自动化学院2020年度研究生优秀新生奖学金申请汇总表" value="2021-2-18" />
+      <van-cell title="电气工程与自动化学院2020年度研究生优秀新生奖学金申请汇总表" value="2021-2-18" />
+      <van-cell title="电气工程与自动化学院2020年度研究生优秀新生奖学金申请汇总表" value="2021-2-18" />
+      <van-cell title="电气工程与自动化学院2020年度研究生优秀新生奖学金申请汇总表" value="2021-2-18" />
+    </van-cell-group>
     <van-cell title="叽喳叽喳" icon="location-o" />
     <sc-froum :froumList="froumList"></sc-froum>
     <van-cell title="校内资讯" icon="location-o" />
@@ -207,5 +220,14 @@ export default {
      background:#ffffff;
   }
 }
-
+.j-home ::v-deep .van-cell__title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 270px;
+}
+.j-home ::v-deep .van-cell__value {
+  flex: inherit;
+  width: 70px;
+}
 </style>
