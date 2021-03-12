@@ -42,12 +42,15 @@
           </van-col>
           <van-col :span="8">
             <div class="footer-content">
-              <van-icon name="comment-o" />
+              <van-icon name="comment-o" @click="showCollapse(index)"/>
               <span class="footer-text">5</span>
             </div>
           </van-col>
         </van-row>
       </div>
+      <collapse :active="currentIndex === index ? true : false">
+
+      </collapse>
     </div>
     <van-share-sheet
       v-model="showShare"
@@ -59,9 +62,11 @@
 
 <script>
 import { Image, Col, Row, Icon, ShareSheet } from 'vant';
+import collapse from '@/components/Collapse/index'
 export default {
   name: "ScFroum",
   components: {
+    collapse,
     [Image.name]: Image,
     [Col.name]: Col,
     [Row.name]: Row,
@@ -78,6 +83,8 @@ export default {
     return {
       isShowAll: false,
       showShare: false,
+      boxshow: false,
+      currentIndex: null,
       options: [
         [
           { name: '微信', icon: 'wechat' },
@@ -95,6 +102,19 @@ export default {
     }
   },
   methods: {
+    showCollapse(index) {
+      if (this.currentIndex == index) {
+          this.currentIndex = null;
+      } else {
+          this.currentIndex = index;
+      }
+      // let _el = event.currentTarget
+      // if (_el.getAttribute('class') === 'active') {
+      //   _el.setAttribute('class', '')
+      // } else {
+      //   _el.setAttribute('class', 'active')
+      // }
+    },
     onScForm(id) {
       this.$emit('onScForm',id)
     },
@@ -109,6 +129,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.box{
+    height:200px;
+    width: 100%;
+    background-color:#ffffff;
+    border-top: 1px solid #ebebeb;
+}
+.box::before {
+  content: '';
+  width:0;
+  height:0;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-bottom:5px solid #ebebeb;
+  position: relative;
+  display: flex;
+  left: 50%;
+  top: -5px;
+}
+.draw-enter-active, .draw-leave-active {
+    transition: all 1s ease;
+}
+.draw-enter, .draw-leave-to {
+    height: 0;
+}
 .j-forum-body {
   .j-forum {
     margin: 10px 0px;
