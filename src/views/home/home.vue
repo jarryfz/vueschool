@@ -62,7 +62,7 @@ import { Toast } from 'vant';
 import { Grid, GridItem } from 'vant';
 import { Swipe, SwipeItem } from 'vant';
 import { NoticeBar } from 'vant';
-import { Cell } from 'vant';
+import { Cell, CellGroup  } from 'vant';
 import { Tab, Tabs } from 'vant';
 import ScNewsList from '@/components/ScNewsList.vue';
 import NavigationBar from '@/components/NavigationBar/index'
@@ -87,7 +87,8 @@ export default {
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [Image.name]: Image,
-    [VanImage.name]: VanImage
+    [VanImage.name]: VanImage,
+    [CellGroup.name]: CellGroup
   },
   mixins: [scrollTop],
   data() {
@@ -147,6 +148,15 @@ export default {
     this.navBarCurrentSlotStyle = this.naBarSlotStyle.normal
     let ql = document.querySelector('.j-home')
     ql.addEventListener('scroll',this.onScrollChange)
+    var shares=null;
+    document.addEventListener('plusready', function() {
+      var shares = null;
+      plus.share.getServices(function(s){
+        shares = s;
+      }, function(e){
+        alert("获取分享服务列表失败： "+JSON.stringify(e));
+      });
+    },false)
   },
 	beforeDestroy() {
     let ql = document.querySelector('.j-home')

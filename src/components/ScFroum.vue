@@ -8,7 +8,7 @@
       <div class="header">
         <img :src="item.avatar" alt="">
         <span>{{item.name}}</span>
-        <div class="header-time">{{item.time}}</div>
+        <div class="header-time">{{item.time | diffTime}}</div>
       </div>
       <div class="main">
         <div class="content" :class="isShowAll ? 'expansion' : item.content.length > 150 ? 'fold' : ''">{{item.content}}</div>
@@ -29,13 +29,18 @@
       </div>
       <div class="footer">
         <van-row>
-          <van-col :span="12">
+          <van-col :span="8">
+            <div class="footer-content">
+              <van-icon name="ellipsis" @click="showSharebox"/>
+            </div>
+          </van-col>
+          <van-col :span="8">
             <div class="footer-content">
               <van-icon name="good-job-o" />
               <span class="footer-text">2</span>
             </div>
           </van-col>
-          <van-col :span="12">
+          <van-col :span="8">
             <div class="footer-content">
               <van-icon name="comment-o" />
               <span class="footer-text">5</span>
@@ -44,18 +49,24 @@
         </van-row>
       </div>
     </div>
+    <van-share-sheet
+      v-model="showShare"
+      title="立即分享给好友"
+      :options="options"
+    />
   </div>
 </template>
 
 <script>
-import { Image, Col, Row, Icon } from 'vant';
+import { Image, Col, Row, Icon, ShareSheet } from 'vant';
 export default {
   name: "ScFroum",
   components: {
     [Image.name]: Image,
     [Col.name]: Col,
     [Row.name]: Row,
-    [Icon.name]: Icon
+    [Icon.name]: Icon,
+    [ShareSheet.name]: ShareSheet
   },
   props: {
     froumList: {
@@ -65,7 +76,22 @@ export default {
   },
   data() {
     return {
-      isShowAll: false
+      isShowAll: false,
+      showShare: false,
+      options: [
+        [
+          { name: '微信', icon: 'wechat' },
+          { name: '朋友圈', icon: 'wechat-moments' },
+          { name: '微博', icon: 'weibo' },
+          { name: 'QQ', icon: 'qq' },
+        ],
+        [
+          { name: '复制链接', icon: 'link' },
+          { name: '分享海报', icon: 'poster' },
+          { name: '二维码', icon: 'qrcode' },
+          { name: '小程序码', icon: 'weapp-qrcode' },
+        ],
+      ],
     }
   },
   methods: {
@@ -74,6 +100,9 @@ export default {
     },
     changeText(item) {
       this.isShowAll === true ? this.isShowAll = false : this.isShowAll = true
+    },
+    showSharebox() {
+      this.showShare = true
     }
   }
 }
@@ -104,7 +133,8 @@ export default {
         text-overflow: ellipsis;
       }
       .header-time {
-        
+        width: 85px;
+        text-align: end;
       }
     }
     .main {

@@ -9,7 +9,11 @@ import "./style/common.scss";
 import "./directive/index.js";
 
 import navbarBack from './mixins/navbar.js';
-
+import * as filters from './filters/index'
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+import './js/appback'
 axios.defaults.baseURL = "http://mockjs.com/api"; // 设置默认请求的url
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
