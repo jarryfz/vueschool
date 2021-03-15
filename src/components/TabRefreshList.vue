@@ -11,12 +11,13 @@
   tabindex: tabs导航 [?]
 -->
 <template>
-  <div class="">
+  <div class="" style="height: 100%;">
     <van-pull-refresh v-model="refresh" @refresh="onRefresh">
       <template v-if="!hasData">
         <van-list
           v-model="loading"
           :finished="finished"
+          :immediate-check="false"
           finished-text="没有更多了"
           @load="onLoad"
         >
@@ -62,6 +63,9 @@ export default {
       finished: false,
       emptyImage: require("@/assets/image/empty.png")
     }
+  },
+  created() {
+    this.getData()
   },
   methods: {
     async getData() {
@@ -112,5 +116,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+::v-deep .van-pull-refresh {
+  height: 100%;
+  overflow-y: scroll;
+}
 </style>

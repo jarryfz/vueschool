@@ -12,7 +12,7 @@
       </div>
       <div class="main">
         <div class="content" :class="isShowAll ? 'expansion' : item.content.length > 150 ? 'fold' : ''">{{item.content}}</div>
-        <div class="expansion-text" v-if="item.content.length > 150" @click="changeText(item.content)">{{isShowAll ? '折叠' : '展开'}}</div>
+        <div class="expansion-text" v-if="item.content.length > 150" @click.stop="changeText(item.content)">{{isShowAll ? '折叠' : '展开'}}</div>
         <div
           class="content-img-box"
           :class="{[item.img.length < 5 ? `col-${item.img.length}` : 'col-4']: true}"
@@ -31,7 +31,7 @@
         <van-row>
           <van-col :span="8">
             <div class="footer-content">
-              <van-icon name="ellipsis" @click="showSharebox"/>
+              <van-icon name="ellipsis" @click.stop="showSharebox"/>
             </div>
           </van-col>
           <van-col :span="8">
@@ -42,15 +42,12 @@
           </van-col>
           <van-col :span="8">
             <div class="footer-content">
-              <van-icon name="comment-o" @click="showCollapse(index)"/>
+              <van-icon name="comment-o"/>
               <span class="footer-text">5</span>
             </div>
           </van-col>
         </van-row>
       </div>
-      <collapse :active="currentIndex === index ? true : false">
-
-      </collapse>
     </div>
     <van-share-sheet
       v-model="showShare"
@@ -84,7 +81,6 @@ export default {
       isShowAll: false,
       showShare: false,
       boxshow: false,
-      currentIndex: null,
       options: [
         [
           { name: '微信', icon: 'wechat' },
@@ -102,19 +98,6 @@ export default {
     }
   },
   methods: {
-    showCollapse(index) {
-      if (this.currentIndex == index) {
-          this.currentIndex = null;
-      } else {
-          this.currentIndex = index;
-      }
-      // let _el = event.currentTarget
-      // if (_el.getAttribute('class') === 'active') {
-      //   _el.setAttribute('class', '')
-      // } else {
-      //   _el.setAttribute('class', 'active')
-      // }
-    },
     onScForm(id) {
       this.$emit('onScForm',id)
     },
@@ -154,6 +137,8 @@ export default {
     height: 0;
 }
 .j-forum-body {
+  height: 100%;
+  overflow: hidden;
   .j-forum {
     margin: 10px 0px;
     padding: 15px 15px 0;

@@ -1,5 +1,5 @@
 <template>
-  <div style="min-height: 100vh">
+  <div style="height: 100%">
     <van-nav-bar
       title="叽喳校园"
       left-arrow
@@ -65,11 +65,15 @@ export default {
 <style lang="scss" scoped>
 .main-content {
   // background: #f6f6f6;
+  height: 100%;
   &::before {
     content: '';
     height: 44px;
     background: #fff;
     display: block;
+  }
+  ::v-deep .van-tabs {
+    height: calc(100% - 46px);
   }
   ::v-deep .van-tabs__wrap {
     position: fixed;
@@ -77,11 +81,15 @@ export default {
     width: 100%;
   }
   ::v-deep .van-tabs__content {
+    height: 100%;
     &::before {
       content: '';
       height: 45px;
       display: block;
     }
+  }
+  ::v-deep .van-tab__pane {
+    height: 100%;
   }
 }
 .van-nav-bar {
