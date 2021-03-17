@@ -27,6 +27,7 @@ body,html {
 }
 .main-content {
   // padding: 0 16px;
+  height: 100%;
   &::before {
     content: '';
     display: block;

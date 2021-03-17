@@ -24,6 +24,7 @@
           <slot name="content"></slot>
           <slot :list="list"></slot>
         </van-list>
+        <!-- <van-loading type="spinner" color="#1989fa" /> -->
       </template>
       <van-empty
         v-if="hasData"
@@ -36,13 +37,14 @@
 </template>
 
 <script>
-import { List, PullRefresh, Empty } from "vant";
+import { List, PullRefresh, Empty, Loading } from "vant";
 export default {
   name: "TabRefreshList",
   components: {
     [List.name]: List,
     [PullRefresh.name]: PullRefresh,
-    [Empty.name]: Empty
+    [Empty.name]: Empty,
+    [Loading.name]: Loading
   },
   props: {
     requestUrl: {

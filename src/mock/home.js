@@ -81,7 +81,7 @@ const froumList = req => {
       let arrimg = Random.dataImage('300x300')
       image.push(arrimg)
     }
-    let tags = ['树洞一下', '今天学到了', '你怎么看']
+    let tags = ['吐槽一下', '今天学到了', '我在阳光暗恋你', '读书角']
     let res = {
       id: Random.natural(0, 100),
       tag: tags[Random.natural(0, 2)],

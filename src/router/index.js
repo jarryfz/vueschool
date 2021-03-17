@@ -47,37 +47,37 @@ export default new Router({
       path: "/market",
       name: "market",
       meta: { keepAlive: true },
-      component: () => import("@/views/gridPage/market.vue")
+      component: () => import("@/views/market/index.vue")
     },
     {
       path: '/twitter-school',
       name: 'twitterSchool',
       meta: { keepAlive: true },
-      component: () => import('@/views/gridPage/twitterSchool.vue')
+      component: () => import('@/views/tweet/index.vue')
     },
     {
       path: "/shop",
       name: "shop",
       meta: { keepAlive: true },
-      component: () => import("@/views/gridPage/shop.vue")
+      component: () => import("@/views/shop/index.vue")
     },
     {
       path: "/repairService",
       name: "repairService",
       meta: { keepAlive: true },
-      component: () => import("@/views/gridPage/repairService.vue")
+      component: () => import("@/views/repairService/index.vue")
     },
     {
       path: "/campusScenery",
       name: "campusScenery",
       meta: { keepAlive: true },
-      component: () => import("@/views/gridPage/campusScenery.vue")
+      component: () => import("@/views/campusScenery/index.vue")
     },
     {
       path: "/club-activite",
       name: "clubActivite",
       meta: { keepAlive: true },
-      component: () => import("@/views/gridPage/clubActivite.vue")
+      component: () => import("@/views/clubActive/index.vue")
     },
     {
       path: "/paymentCenter",
@@ -92,16 +92,16 @@ export default new Router({
       component: () => import("@/views/gridPage/myClassSchedule.vue")
     },
     {
-      path: "/vanTMobileHtml",
-      name: "vanTMobileHtml",
+      path: "/lostAndFound",
+      name: "lostAndFound",
       meta: { keepAlive: true },
-      component: () => import("@/views/gridPage/vanTMobileHtml.vue")
+      component: () => import("@/views/lostAndFound/index.vue")
     },
     {
       path: "/announcement",
       name: "announcement",
       meta: { keepAlive: true },
-      component: () => import("@/views/gridPage/announcement.vue")
+      component: () => import("@/views/announcement/index.vue")
     },
     {
       path: "/market/:id",

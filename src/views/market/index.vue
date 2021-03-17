@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="j-market">
     <van-nav-bar
       title="淘市场"
       left-arrow
@@ -7,7 +7,22 @@
       @click-left="onClickLeft"
     />
     <div class="main-content">
-      <tab-refresh-list requestUrl="/market/list">
+      <van-dropdown-menu>
+        <van-dropdown-item v-model="value1" :options="option1" @change="itemChange" />
+        <van-dropdown-item title="筛选" ref="item">
+          <van-cell center title="包邮">
+            <!-- <template #right-icon>
+              <van-switch v-model="switch1" size="24" active-color="#ee0a24" />
+            </template> -->
+          </van-cell>
+          <van-cell center title="团购">
+            <!-- <template #right-icon>
+              <van-switch v-model="switch2" size="24" active-color="#ee0a24" />
+            </template> -->
+          </van-cell>
+        </van-dropdown-item>
+      </van-dropdown-menu>
+      <tab-refresh-list requestUrl="/market/list" :tabindex="value1">
         <template v-slot="{ list }">
           <van-swipe class="my-swipe" :autoplay="5000" indicator-color="#39a9ed">
             <van-swipe-item v-for="(item,index) in bannerList" :key="index">
@@ -45,7 +60,9 @@ export default {
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [Swipe.name]: Swipe,
-    [SwipeItem.name]: SwipeItem
+    [SwipeItem.name]: SwipeItem,
+    [DropdownMenu.name]: DropdownMenu,
+    [DropdownItem.name]: DropdownItem
   },
   data() {
     return {
@@ -71,40 +88,12 @@ export default {
     }
   },
   created() {
-    // console.log(this.$router,this.$route)
-    // let arr1 = [12,34,65,345,4];
-    // let arr2 = [...arr1];
-    // arr1.push(99);
-    // console.log('arr1',arr1,'arr2',arr2)//arr1 (6) [12, 34, 65, 345, 4, 99] arr2 (5) [12, 34, 65, 345, 4];
-
-    // /** 
-    //  * 函数
-    // */
-    // function f(x=10,y=20) {
-    //   console.log(x,y)
-    // }
-    // f(100);
-    // /** 
-    //  * 递归
-    // */
-    // function getsum(n) {
-    //   if(n === 1) {
-    //     return 1
-    //   } else {
-    //     return getsum(n - 1) + n;
-    //   }
-    // }
-    // console.log(getsum(5))
-    // const hs = (n) => {
-    //   if(n == 1) {
-    //     return 1
-    //   }else {
-    //     return hs(n - 1) + n
-    //   }
-    // }
-    // console.log(hs(6))
   },
   methods: {
+    itemChange(value) {
+      // this.value1 = value
+      console.log(this.value1)
+    },
     onClickLeft() {
       this.$router.push({path: "/"})
     },
@@ -116,6 +105,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .j-market {
+    height: 100%;
+  }
   .my-swipe .van-swipe-item {
     color: #fff;
     font-size: 20px;

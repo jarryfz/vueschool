@@ -139,7 +139,7 @@ export default {
         { icon: require('../../assets/image/home/item5.svg'), text: '社团活动', path: 'club-activite' },
         { icon: require('../../assets/image/home/item6.svg'), text: '通知公告', path: 'announcement' },
         { icon: require('../../assets/image/home/item7.svg'), text: '报修服务', path: 'repairService' },
-        { icon: require('../../assets/image/home/item2.svg'), text: '新闻中心', path: '' }
+        { icon: require('../../assets/image/home/item2.svg'), text: '校园风光', path: 'campusScenery' }
       ]
     }
   },
