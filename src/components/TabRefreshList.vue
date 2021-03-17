@@ -76,13 +76,10 @@ export default {
           id: this.tabindex
         }
         const result = await this.$http.post(this.requestUrl, params);
-        // console.log(result)
         if (result) {
           this.hasData = result.data.data.length > 0 ? false : true;
           if (!this.hasData) {
-            for (const item of result.data.data) {
-              this.list.push(item);
-            }
+            this.list = this.list.concat(result.data.data)
           }
           this.finished = this.list.length >= 40 ? true : false;
         }

@@ -145,6 +145,7 @@ export default {
   },
   mounted() {
     this.queryList();
+    this.getFroumList()
     this.navBarCurrentSlotStyle = this.naBarSlotStyle.normal
     let ql = document.querySelector('.j-home')
     ql.addEventListener('scroll',this.onScrollChange)
@@ -178,15 +179,17 @@ export default {
       }
       this.navBarStyle.backgroundColor = "rgba(255, 255, 255, " + opacity + ")"
     },
-    queryList() {
-      this.$http.post("/home/newsList").then(res => {
-        console.log(res.data)
-        this.newsList = res.data.data;
-      })
-      this.$http.post("/home/froum").then(res => {
-        console.log(res.data)
-        this.froumList = res.data.data;
-      })
+    async getFroumList() {
+      const res = await this.$api.home.froumList({})
+      if(res) {
+        this.froumList = res.data;
+      }
+    },
+    async queryList() {
+      const res = await this.$api.home.newsList({})
+      if(res) {
+        this.newsList = res.data;
+      }
     }
   },
 };

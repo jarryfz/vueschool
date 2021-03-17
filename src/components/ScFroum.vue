@@ -137,8 +137,8 @@ export default {
     height: 0;
 }
 .j-forum-body {
-  height: 100%;
-  overflow: hidden;
+  // height: 100%;
+  // overflow: hidden;
   .j-forum {
     margin: 10px 0px;
     padding: 15px 15px 0;

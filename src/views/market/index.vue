@@ -91,8 +91,7 @@ export default {
   },
   methods: {
     itemChange(value) {
-      // this.value1 = value
-      console.log(this.value1)
+      
     },
     onClickLeft() {
       this.$router.push({path: "/"})

@@ -1,17 +1,18 @@
 import axios from 'axios'
 import store from '@/store'
+import config from '../config/index'
 // import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
+  baseURL: config.base_url, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
 const getToken = 'eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODU3MDUwNDIsImlhdCI6MTU4NTYxODY0Miwic3RhZmZJZCI6MSwianRpIjoiMmIzNTg2MWEwYWE4NDVlOGEzMDI2NWE1YjU5ZTc0MWYuMTU4NTYxODY0Mjk2OCJ9.AcwUQLr4Ngz7vA_O07lWE50JxKClY0c0zy1sdEWVJBY';
-service.defaults.baseURL = "http://www.zrfc.com";
+// service.defaults.baseURL = "http://www.zrfc.com";
 // request interceptor
-service.interceptors.request.use( 
+service.interceptors.request.use(
   config => {
     // do something before request is sent
 
