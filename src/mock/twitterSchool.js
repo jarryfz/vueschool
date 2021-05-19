@@ -31,4 +31,4 @@ const list = req => {
     code
   }
 }
-Mock.mock(`${ domain }/twitter`, 'post', list)
+Mock.mock(`${ domain }/tweet/list`, 'post', list)

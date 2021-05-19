@@ -1,24 +1,15 @@
 <template>
   <div class="j-home">
     <div class="j-home-header">
-      <navigation-bar :isShowBack="false" :navBarStyle="navBarStyle">
-        <template v-slot:nav-center>
-          <van-search
-            v-model="value"
-            shape="round"
-            show-action
-            :background="searchBackground"
-            placeholder="请输入搜索关键词"
-          >
-          <template #action>
-            <div @click="onSearch">搜索</div>
-          </template>
-          </van-search>
-        </template>
+      <navigation-bar
+        :isShowBack="false"
+        :isNavRight="false"
+        pageClassName="j-home"
+      >
       </navigation-bar>
     </div>
-    <van-swipe class="my-swipe" indicator-color="#39a9ed">
-      <van-swipe-item v-for="(item,index) in images" :key="index">
+    <van-swipe class="my-swipe" indicator-color="#673ab7">
+      <van-swipe-item v-for="item in images" :key="item">
         <van-image
           fit="cover"
           :src="item"
@@ -27,8 +18,8 @@
     </van-swipe>
     <van-grid :border="false" :icon-size="50">
       <van-grid-item
-        v-for="(item,index) in gridItems"
-        :key="index"
+        v-for="item in gridItems"
+        :key="item.path"
         :icon="item.icon"
         :text="item.text"
         :to="item.path" 
@@ -48,15 +39,15 @@
       <van-cell title="电气工程与自动化学院2020年度研究生优秀新生奖学金申请汇总表" value="2021-2-18" />
     </van-cell-group>
     <van-cell title="叽喳叽喳" icon="location-o" />
-    <sc-froum :froumList="froumList"></sc-froum>
+    <!-- <sc-froum :froumList="froumList"></sc-froum> -->
     <van-cell title="校内资讯" icon="location-o" />
-    <sc-news-list :newsList="newsList"></sc-news-list>
+    <!-- <sc-news-list :newsList="newsList"></sc-news-list> -->
   </div>
 </template>
 
 <script>
 import { Icon,Image as VanImage } from 'vant';
-import { Search } from 'vant';
+import { Search,Loading } from 'vant';
 import { PullRefresh } from 'vant';
 import { Toast } from 'vant';
 import { Grid, GridItem } from 'vant';
@@ -88,12 +79,12 @@ export default {
     [Tabs.name]: Tabs,
     [Image.name]: Image,
     [VanImage.name]: VanImage,
-    [CellGroup.name]: CellGroup
+    [CellGroup.name]: CellGroup,
+    [Loading.name]: Loading,
   },
   mixins: [scrollTop],
   data() {
     return {
-      searchBackground: 'transparent',
       count: 0,
       isLoading: false,
       value: '',
@@ -101,8 +92,8 @@ export default {
       opacity: 0,
       offsetTop: 0,
       images: [
-        require('../../assets/image/home1.jpg'),
         require('../../assets/image/home2.jpg'),
+        require('../../assets/image/home1.jpg'),
         require('../../assets/image/home5.jpg'),
         require('../../assets/image/home3.jpg')
       ],
@@ -110,27 +101,6 @@ export default {
       froumList: [],
       active: 0,
       scroll: '',
-      naBarSlotStyle: {
-        normal: {
-          search: {
-            bgColor: '#ffffff',
-            hintColor: '#999999',
-          },
-        },
-        highlight: {
-            search: {
-                bgColor: '#d7d7d7',
-                hintColor: '#eee',
-            },
-        }
-      },
-      navBarCurrentSlotStyle: {},
-      navBarStyle: {
-          backgroundColor: '',
-          position: 'fixed',
-      },
-      scrollTopValue: -1,
-      ANCHOR_SCROLL_TOP: 160,
       gridItems: [
         { icon: require('../../assets/image/home/item1.svg'), text: '淘市场', path: 'market' },
         { icon: require('../../assets/image/home/item2.svg'), text: '小卖部', path: 'shop' },
@@ -143,42 +113,20 @@ export default {
       ]
     }
   },
-  mounted() {
-    this.queryList();
-    this.getFroumList()
-    this.navBarCurrentSlotStyle = this.naBarSlotStyle.normal
-    let ql = document.querySelector('.j-home')
-    ql.addEventListener('scroll',this.onScrollChange)
-    var shares=null;
-    document.addEventListener('plusready', function() {
-      var shares = null;
-      plus.share.getServices(function(s){
-        shares = s;
-      }, function(e){
-        alert("获取分享服务列表失败： "+JSON.stringify(e));
-      });
-    },false)
+  created() {
+    
   },
-	beforeDestroy() {
-    let ql = document.querySelector('.j-home')
-		ql.removeEventListener("scroll", this.onScrollChange)
-	},
+  mounted() {
+    setTimeout(() => {
+      // this.queryList();
+      // this.getFroumList()
+    },0)
+    // document.addEventListener('plusready', function() {
+    //   var shares = null;
+      
+    // },false)
+  },
   methods: {
-    onSearch() {
-      console.log(this.value)
-    },
-		onScrollChange($event) {
-      this.scrollTopValue = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || document.querySelector('.j-home').scrollTop;
-      let opacity = this.scrollTopValue / this.ANCHOR_SCROLL_TOP
-      if (opacity >= 1) {
-        this.navBarCurrentSlotStyle = this.naBarSlotStyle.highlight
-        this.searchBackground = '#ffffff'
-      } else {
-        this.searchBackground = 'transparent'
-        this.navBarCurrentSlotStyle = this.naBarSlotStyle.normal
-      }
-      this.navBarStyle.backgroundColor = "rgba(255, 255, 255, " + opacity + ")"
-    },
     async getFroumList() {
       const res = await this.$api.home.froumList({})
       if(res) {
@@ -186,6 +134,7 @@ export default {
       }
     },
     async queryList() {
+      
       const res = await this.$api.home.newsList({})
       if(res) {
         this.newsList = res.data;

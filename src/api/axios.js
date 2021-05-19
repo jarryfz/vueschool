@@ -21,7 +21,6 @@ function post(params, url, headersType) {
 }
 
 function put(params, url, headersType) {
-  console.log(headersType)
   return request({
     url: filterUrl(url),
     method: 'put',

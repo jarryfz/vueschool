@@ -6,7 +6,7 @@
       </keep-alive>
       <router-view v-if="!$route.meta.keepAlive"></router-view>
     </div>
-    <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000" route>
+    <van-tabbar v-model="active" active-color="#673ab7" inactive-color="#000" route>
       <van-tabbar-item replace to="/home" class="iconfont icon-shouye">首页</van-tabbar-item>
       <van-tabbar-item replace to="/school-news" class="iconfont icon-xuexiaoxiaoyuanwangxinwenzixunfabushenpibiao"> 校园资讯 </van-tabbar-item>
       <van-tabbar-item replace to="/message" class="iconfont icon-14">消息</van-tabbar-item>
@@ -29,17 +29,10 @@ export default {
     }
   },
   created () {
-    this.queryList()
+    
   },
   methods: {
-    queryList() {
-      this.$http.get("/posts").then(res => {
-        console.log(res.data);
-      });
-      this.$http.post("/userinfo").then(res => {
-        console.log(res.data);
-      })
-    }
+
   }
 }
 </script>

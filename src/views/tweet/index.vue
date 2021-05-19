@@ -1,12 +1,14 @@
 <template>
-  <div style="height: 100%">
-    <van-nav-bar
-      title="叽喳校园"
-      left-arrow
-      fixed
-      :border="false"
-      @click-left="onClickLeft"
-    />
+  <div class="j-tweet">
+    <div class="j-tweet-header">
+      <navigation-bar
+        :isShowBack="true"
+        :isNavRight="false"
+        pageClassName="j-tweet"
+        :isImmersion="false"
+      >
+      </navigation-bar>
+    </div>
     <div class="main-content">
       <van-tabs v-model="active" background="#FFFFFF" animated title-active-color="#07c160" color="#07c160" @click="tabClick">
         <van-tab
@@ -14,7 +16,7 @@
           :key="index"
           :title="item.title"
         >
-          <tab-refresh-list requestUrl="/twitter" :tabindex="active">
+          <tab-refresh-list request="list" modules="tweet" :tabindex="active" height="calc(100% - 44px)">
             <template v-slot="{ list }">
               <sc-froum :froumList="list" @onScForm="onScForm"></sc-froum>
             </template>
@@ -30,10 +32,12 @@ import { Tab, Tabs, NavBar, Loading } from 'vant';
 import tabRefreshList from "@/components/TabRefreshList.vue";
 import ScFroum from "@/components/ScFroum.vue";
 import navbar from "@/mixins/navbar.js";
+import navigationBar from '@/components/NavigationBar/index'
 export default {
   name: "twitterSchool",
   components: {
     tabRefreshList,
+    navigationBar,
     ScFroum,
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
@@ -67,6 +71,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ .j-tweet {
+    height: 100%;
+    overflow-y: scroll;
+    .j-tweet-header {
+      height: 50px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 11;
+    }
+  }
 .main-content {
   // background: #f6f6f6;
   height: 100%;

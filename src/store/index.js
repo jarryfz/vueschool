@@ -5,22 +5,24 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    count: 0
+    direction: 'slide-right'
   },
+  getters:{
+    // 参数列表state指的是state数据
+    getTransionFn(state){
+        return state.direction;
+    }
+},
   mutations: {
-    add(state) {
-      state.count = state.count + 1;
-    },
-    reduction(state) {
-      state.count = state.count - 1;
+    setTransion(state, name){
+      state.direction = name;
     }
   },
   actions: {
-    addFun(context) {
-      context.commit('add')
-    },
-    reductionFun(context) {
-      context.commit('reduction')
+    setTransionName({commit,state}, name){
+      // 跟后台打交道
+      // 调用mutaions里面的方法
+      commit("setTransion", name);
     }
   },
   modules: {}

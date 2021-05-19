@@ -11,7 +11,7 @@
   tabindex: tabs导航 [?]
 -->
 <template>
-  <div class="" style="height: 100%;">
+  <div class="" :style="{height: height}">
     <van-pull-refresh v-model="refresh" @refresh="onRefresh">
       <template v-if="!hasData">
         <van-list
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { List, PullRefresh, Empty, Loading } from "vant";
+import { List, PullRefresh, Empty, Loading, } from "vant";
 export default {
   name: "TabRefreshList",
   components: {
@@ -47,7 +47,15 @@ export default {
     [Loading.name]: Loading
   },
   props: {
-    requestUrl: {
+    height: {
+      type: String || Number,
+      default: () => {}
+    },
+    modules: {
+      type: String,
+      default: () => {}
+    },
+    request: {
       type: String,
       default: () => {}
     },
@@ -61,25 +69,30 @@ export default {
       list: [],
       hasData: false,
       refresh: false,
-      loading: false,
+      loading: true,
       finished: false,
       emptyImage: require("@/assets/image/empty.png")
     }
   },
-  created() {
-    this.getData()
+  mounted() {
+    // setTimeout(() =>{
+      // this.getData()
+    // },300)
+    this.$nextTick(function () {
+      this.getData()
+    });
   },
   methods: {
     async getData() {
       try {
-        const params = {
+        const params = { 
           id: this.tabindex
         }
-        const result = await this.$http.post(this.requestUrl, params);
+        const result = await this.$api[this.modules][this.request](params);
         if (result) {
-          this.hasData = result.data.data.length > 0 ? false : true;
+          this.hasData = result.data.length > 0 ? false : true;
           if (!this.hasData) {
-            this.list = this.list.concat(result.data.data)
+            this.list = this.list.concat(result.data)
           }
           this.finished = this.list.length >= 40 ? true : false;
         }
@@ -91,10 +104,11 @@ export default {
       }
     },
     onLoad() {
-      if(this.requestUrl) {
-        setTimeout(() => {
-          this.getData();
-        }, 1000);
+      if(this.request) {
+        this.getData();
+        // setTimeout(() => {
+        //   this.getData();
+        // }, 1000);
       }else{
         this.finished = true;
         this.refresh = false;

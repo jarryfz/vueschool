@@ -1,5 +1,5 @@
 import axios from 'axios'
-import store from '@/store'
+import store from '@/store/index'
 // import { getToken } from '@/utils/auth'
 
 // create an axios instance
@@ -14,7 +14,7 @@ service.defaults.baseURL = "http://www.zrfc.com";
 service.interceptors.request.use( 
   config => {
     // do something before request is sent
-
+    console.log(store)
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
@@ -33,7 +33,6 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   response => {
-    console.log(response)
     const res = response.data
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 200) {
@@ -43,7 +42,6 @@ service.interceptors.response.use(
       }
       return Promise.reject(new Error(res.message || 'Error'))
     } else {
-      console.log(res)
       return res
     }
   },

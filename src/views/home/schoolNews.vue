@@ -39,8 +39,8 @@ export default {
           this.list = [];
           this.refreshing = false;
         }
-        this.$http.post("/home/newsList").then(res => {
-          this.newsList = res.data.data;
+        this.$api.school.newsList({}).then(res => {
+          this.newsList = res.data;
           this.newsList.forEach(val => {
             this.list.push(val);
           })
