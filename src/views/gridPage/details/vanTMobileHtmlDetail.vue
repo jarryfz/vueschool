@@ -1,11 +1,6 @@
 <template>
   <div>
-     <van-nav-bar
-      title="失物招领"
-      left-arrow
-      fixed
-      @click-left="onClickLeft"
-    />
+    <van-nav-bar title="失物招领" left-arrow fixed @click-left="onClickLeft" />
     <div class="main-content">
       <div class="user_info_wrap">
         <div class="user_info_avatar">
@@ -27,15 +22,15 @@
       </div>
       <div class="mk_leaveAMessage">
         <div>留言</div>
-        <van-empty :image="emptyImg" description="还未有人来留言，还不快来抢沙发" />
+        <van-empty
+          :image="emptyImg"
+          description="还未有人来留言，还不快来抢沙发"
+        />
       </div>
     </div>
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" text="留言" />
-      <van-goods-action-button
-        type="warning"
-        text="联系他(她)"
-      />
+      <van-goods-action-button type="warning" text="联系他(她)" />
     </van-goods-action>
   </div>
 </template>
@@ -43,10 +38,10 @@
 <script>
 import navbar from "@/mixins/navbar.js";
 export default {
-  name: 'vanTMobileHtmlDetail',
+  name: "vanTMobileHtmlDetail",
   mixins: [navbar],
   data() {
-    return {}
+    return {};
   }
 }
 </script>

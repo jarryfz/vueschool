@@ -1,25 +1,22 @@
 <template>
   <div id="app">
     <transition :name="direction">
-      <!-- <van-skeleton title avatar :row="10" :loading="loading"> -->
-        <router-view  class="appView"></router-view>
-      <!-- </van-skeleton> -->
-      <!-- <keep-alive>
-        <router-view v-if="$route.meta.keepAlive" class="appView"></router-view>
-      </keep-alive> -->
+      <router-view v-if="!$route.meta.keepAlive" class="appView"></router-view>
+      <div>
+        <keep-alive>
+          <router-view
+            v-if="$route.meta.keepAlive"
+            class="appView"
+          ></router-view>
+        </keep-alive>
+      </div>
     </transition>
   </div>
 </template>
 
 <script>
-import { Tabbar, TabbarItem } from "vant";
-import { Skeleton } from 'vant';
 export default {
-  components: {
-    [Tabbar.name]: Tabbar,
-    [TabbarItem.name]: TabbarItem,
-    [Skeleton.name]: Skeleton
-  },
+  components: {},
   data() {
     return {
       active: 0,
@@ -32,10 +29,10 @@ export default {
     // document.addEventListener('plusready',function(s) {
     //   plus.navigator.setStatusBarBackground("transparent")
     // })
-    this.loading = false
+    this.loading = false;
   },
-  computed:{
-    direction:function() {
+  computed: {
+    direction: function() {
       // 通过vuex的getters方法来获取state里面的数据
       return this.$store.getters.getTransionFn;
     }
@@ -53,10 +50,11 @@ export default {
   //     }
   //   }
   // },
-}
+};
 </script>
 <style lang="scss">
-html,body {
+html,
+body {
   height: 100%;
 }
 #app {
@@ -108,11 +106,8 @@ html,body {
   transform: translate(-50%, 0);
   opacity: 0;
 }
-.slide-right-leave-active{
+.slide-right-leave-active {
   transform: translate(100%, 0);
   opacity: 1;
 }
-
-</style>
-
 </style>

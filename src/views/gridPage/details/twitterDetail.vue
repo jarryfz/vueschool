@@ -1,15 +1,10 @@
 <template>
   <div>
-     <van-nav-bar
-      title="叽喳叽喳"
-      left-arrow
-      fixed
-      @click-left="onClickLeft"
-    />
+    <van-nav-bar title="叽喳叽喳" left-arrow fixed @click-left="onClickLeft" />
     <div class="main-content">
       <div class="user_info_wrap">
         <div class="user_info_avatar">
-          <img src="../../../assets/image/avatar_girl.png" alt="">
+          <img src="../../../assets/image/avatar_girl.png" alt="" />
         </div>
         <div class="user_info_name">
           xinxi
@@ -27,7 +22,10 @@
       </div>
       <div class="mk_leaveAMessage">
         <div>留言</div>
-        <van-empty :image="emptyImg" description="还未有人来留言，还不快来抢沙发" />
+        <van-empty
+          :image="emptyImg"
+          description="还未有人来留言，还不快来抢沙发"
+        />
       </div>
     </div>
   </div>
@@ -36,10 +34,10 @@
 <script>
 import navbar from "@/mixins/navbar.js";
 export default {
-  name: 'vanTMobileHtmlDetail',
+  name: "twitterDetail",
   mixins: [navbar],
   data() {
-    return {}
+    return {};
   }
 }
 </script>

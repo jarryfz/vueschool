@@ -11,7 +11,7 @@
   tabindex: tabs导航 [?]
 -->
 <template>
-  <div class="" :style="{height: height}">
+  <div class="" :style="{ height: height }">
     <van-pull-refresh v-model="refresh" @refresh="onRefresh">
       <template v-if="!hasData">
         <van-list
@@ -37,15 +37,9 @@
 </template>
 
 <script>
-import { List, PullRefresh, Empty, Loading, } from "vant";
 export default {
   name: "TabRefreshList",
-  components: {
-    [List.name]: List,
-    [PullRefresh.name]: PullRefresh,
-    [Empty.name]: Empty,
-    [Loading.name]: Loading
-  },
+  components: {},
   props: {
     height: {
       type: String || Number,
@@ -78,21 +72,21 @@ export default {
     // setTimeout(() =>{
       // this.getData()
     // },300)
-    this.$nextTick(function () {
-      this.getData()
+    this.$nextTick(function() {
+      this.getData();
     });
   },
   methods: {
     async getData() {
       try {
-        const params = { 
+        const params = {
           id: this.tabindex
-        }
+        };
         const result = await this.$api[this.modules][this.request](params);
         if (result) {
           this.hasData = result.data.length > 0 ? false : true;
           if (!this.hasData) {
-            this.list = this.list.concat(result.data)
+            this.list = this.list.concat(result.data);
           }
           this.finished = this.list.length >= 40 ? true : false;
         }
@@ -104,17 +98,16 @@ export default {
       }
     },
     onLoad() {
-      if(this.request) {
+      if (this.request) {
         this.getData();
         // setTimeout(() => {
         //   this.getData();
         // }, 1000);
-      }else{
+      } else {
         this.finished = true;
         this.refresh = false;
         this.loading = false;
       }
-     
     },
     onRefresh() {
       // 清空列表数据

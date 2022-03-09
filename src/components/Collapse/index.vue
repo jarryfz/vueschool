@@ -1,15 +1,16 @@
 /*
  * @Author: jarryfz
- * @Date: 2021-03-12 14:31:45 
+ * @Date: 2021-03-12 14:31:45
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2021-03-12 15:00:53
+ * @Last Modified time: 2022-03-09 12:41:14
  */
 <template>
   <div class="j-collapse">
     <transition :name="collapseName">
-      <div class="j-collapse-box"
-        :class="{active: active}"
-        :style="{'height': `${height}px`}"
+      <div
+        class="j-collapse-box"
+        :class="{ active: active }"
+        :style="{ height: `${height}px` }"
       >
         <slot name="content"></slot>
       </div>
@@ -18,11 +19,11 @@
 </template>
 <script>
 export default {
-  name: 'Collapse',
+  name: "Collapse",
   props: {
     height: {
       type: String | Number,
-      default: '200'
+      default: "200"
     },
     active: {
       type: Boolean,
@@ -31,29 +32,29 @@ export default {
   },
   data() {
     return {
-      collapseName: 'collapse'
-    }
+      collapseName: "collapse"
+    };
   },
   created() {},
   methods: {}
 }
 </script>
 <style lang="scss" scoped>
-  .j-collapse {
+.j-collapse {
+  width: 100%;
+  .collapse-enter-active, .collapse-leave-active {
+    transition: all 1s ease;
+  }
+  .collapse-enter, .collapse-leave-to {
+    height: 0;
+  }
+  .j-collapse-box {
     width: 100%;
-    .collapse-enter-active, .collapse-leave-active {
-      transition: all 1s ease;
-    }
-    .collapse-enter, .collapse-leave-to {
-      height: 0;
-    }
-    .j-collapse-box {
-      width: 100%;
-      background: #ccc;
-      display: none;
-      &.active {
-        display: block;
-      }
+    background: #ccc;
+    display: none;
+    &.active {
+      display: block;
     }
   }
+}
 </style>

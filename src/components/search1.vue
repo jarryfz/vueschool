@@ -1,7 +1,7 @@
 <template>
-  <div class="search" :style="{background: bgColor}">
+  <div class="search" :style="{ background: bgColor }">
     <!-- <img class="search-icon" :src="icon" alt=""> -->
-    <span class="search-hint" :style="{color: hintColor}">商城系统</span>
+    <span class="search-hint" :style="{ color: hintColor }">商城系统</span>
   </div>
 </template>
 
@@ -14,10 +14,10 @@ export default {
     // },
     hintColor: {
       type: String,
-      default: '#999'
+      default: "#999"
     },
     bgColor: {
-      default: '#ffffff',
+      default: "#ffffff",
       type: String
     }
   }

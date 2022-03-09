@@ -1,37 +1,49 @@
-<template >
+<template>
   <div class="j-forum-body">
-    <div class="j-forum"
-      v-for="(item,index) in froumList"
+    <div
+      class="j-forum"
+      v-for="(item, index) in froumList"
       :key="index"
       @click="onScForm(item.id)"
     >
       <div class="header">
-        <img :src="item.avatar" alt="">
-        <span>{{item.name}}</span>
-        <div class="header-time">{{item.time | diffTime}}</div>
+        <img :src="item.avatar" alt="" />
+        <span>{{ item.name }}</span>
+        <div class="header-time">{{ item.time | diffTime }}</div>
       </div>
       <div class="main">
-        <div class="content" :class="isShowAll ? 'expansion' : item.content.length > 150 ? 'fold' : ''">{{item.content}}</div>
-        <div class="expansion-text" v-if="item.content.length > 150" @click.stop="changeText(item.content)">{{isShowAll ? '折叠' : '展开'}}</div>
+        <div
+          class="content"
+          :class="
+            isShowAll ? 'expansion' : item.content.length > 150 ? 'fold' : ''
+          "
+        >
+          {{ item.content }}
+        </div>
+        <div
+          class="expansion-text"
+          v-if="item.content.length > 150"
+          @click.stop="changeText(item.content)"
+        >
+          {{ isShowAll ? "折叠" : "展开" }}
+        </div>
         <div
           class="content-img-box"
-          :class="{[item.img.length < 5 ? `col-${item.img.length}` : 'col-4']: true}"
+          :class="{
+            [item.img.length < 5 ? `col-${item.img.length}` : 'col-4']: true
+          }"
         >
-          <van-image
-            :src="o"
-            v-for="(o,i) in item.img"
-            :key="i"
-          />
+          <van-image :src="o" v-for="(o, i) in item.img" :key="i" />
         </div>
         <div class="tag">
-          <van-tag plain round type="primary">{{item.tag}}</van-tag>
+          <van-tag plain round type="primary">{{ item.tag }}</van-tag>
         </div>
       </div>
       <div class="footer">
         <van-row>
           <van-col :span="8">
             <div class="footer-content">
-              <van-icon name="ellipsis" @click.stop="showSharebox"/>
+              <van-icon name="ellipsis" @click.stop="showSharebox" />
             </div>
           </van-col>
           <van-col :span="8">
@@ -42,7 +54,7 @@
           </van-col>
           <van-col :span="8">
             <div class="footer-content">
-              <van-icon name="comment-o"/>
+              <van-icon name="comment-o" />
               <span class="footer-text">5</span>
             </div>
           </van-col>
@@ -58,17 +70,11 @@
 </template>
 
 <script>
-import { Image, Col, Row, Icon, ShareSheet } from 'vant';
-import collapse from '@/components/Collapse/index'
+import collapse from "@/components/Collapse/index";
 export default {
   name: "ScFroum",
   components: {
-    collapse,
-    [Image.name]: Image,
-    [Col.name]: Col,
-    [Row.name]: Row,
-    [Icon.name]: Icon,
-    [ShareSheet.name]: ShareSheet
+    collapse
   },
   props: {
     froumList: {
@@ -83,58 +89,62 @@ export default {
       boxshow: false,
       options: [
         [
-          { name: '微信', icon: 'wechat' },
-          { name: '朋友圈', icon: 'wechat-moments' },
-          { name: '微博', icon: 'weibo' },
-          { name: 'QQ', icon: 'qq' },
+          { name: "微信", icon: "wechat" },
+          { name: "朋友圈", icon: "wechat-moments" },
+          { name: "微博", icon: "weibo" },
+          { name: "QQ", icon: "qq" }
         ],
         [
-          { name: '复制链接', icon: 'link' },
-          { name: '分享海报', icon: 'poster' },
-          { name: '二维码', icon: 'qrcode' },
-          { name: '小程序码', icon: 'weapp-qrcode' },
-        ],
-      ],
-    }
+          { name: "复制链接", icon: "link" },
+          { name: "分享海报", icon: "poster" },
+          { name: "二维码", icon: "qrcode" },
+          { name: "小程序码", icon: "weapp-qrcode" }
+        ]
+      ]
+    };
   },
   methods: {
     onScForm(id) {
-      this.$emit('onScForm',id)
+      this.$emit("onScForm", id);
     },
     changeText(item) {
-      this.isShowAll === true ? this.isShowAll = false : this.isShowAll = true
+      this.isShowAll === true
+        ? (this.isShowAll = false)
+        : (this.isShowAll = true);
     },
     showSharebox() {
-      this.showShare = true
+      this.showShare = true;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.box{
-    height:200px;
-    width: 100%;
-    background-color:#ffffff;
-    border-top: 1px solid #ebebeb;
+.box {
+  height: 200px;
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #ebebeb;
 }
 .box::before {
-  content: '';
-  width:0;
-  height:0;
-  border-left:5px solid transparent;
-  border-right:5px solid transparent;
-  border-bottom:5px solid #ebebeb;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #ebebeb;
   position: relative;
   display: flex;
   left: 50%;
   top: -5px;
 }
-.draw-enter-active, .draw-leave-active {
-    transition: all 1s ease;
+.draw-enter-active,
+.draw-leave-active {
+  transition: all 1s ease;
 }
-.draw-enter, .draw-leave-to {
-    height: 0;
+.draw-enter,
+.draw-leave-to {
+  height: 0;
 }
 .j-forum-body {
   // height: 100%;

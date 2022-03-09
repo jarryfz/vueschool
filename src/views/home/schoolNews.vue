@@ -1,25 +1,23 @@
 <template>
-  <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-    <van-list
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      @load="onLoad"
-    >
-      <sc-news-list :newsList="list"></sc-news-list>
-    </van-list>
-  </van-pull-refresh>
+  <div class="pull-refresh-box">
+    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <sc-news-list :newsList="list"></sc-news-list>
+      </van-list>
+    </van-pull-refresh>
+  </div>
 </template>
 <script>
-import { List } from "vant";
-import { PullRefresh } from 'vant';
-import ScNewsList from '@/components/ScNewsList.vue';
+import ScNewsList from "@/components/ScNewsList.vue";
 import scrollTop from "@/mixins/scrollTop.js";
 export default {
   name: "schoolNews",
   components: {
-    [List.name]: List,
-    [PullRefresh.name]: PullRefresh,
     ScNewsList
   },
   mixins: [scrollTop],
@@ -33,23 +31,22 @@ export default {
     };
   },
   methods: {
-    onLoad() {
-      setTimeout(() => {
-        if (this.refreshing) {
-          this.list = [];
-          this.refreshing = false;
-        }
-        this.$api.school.newsList({}).then(res => {
-          this.newsList = res.data;
-          this.newsList.forEach(val => {
-            this.list.push(val);
-          })
-        })
+    async onLoad() {
+      if (this.refreshing) {
+        this.list = [];
+        this.refreshing = false;
+      }
+      const res = await this.$api.school.newsList();
+      setTimeout(() => { // setTimeout模拟请求的过程
+        this.newsList = res.data;
+        this.newsList.forEach(val => {
+          this.list.push(val);
+        });
         this.loading = false;
-        if (this.list.length >= 30) {
-          this.finished = true;
-        }
       }, 1000);
+      if (this.list.length >= 30) {
+        this.finished = true;
+      }
     },
     onRefresh() {
       // 清空列表数据

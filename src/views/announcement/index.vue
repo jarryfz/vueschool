@@ -1,17 +1,11 @@
 <template>
   <div>
-    <van-nav-bar
-      title="通知公告"
-      left-arrow
-      fixed
-      @click-left="onClickLeft"
-    />
+    <van-nav-bar title="通知公告" left-arrow fixed @click-left="onClickLeft" />
     <div class="main-content">
       <van-dropdown-menu @change="dropdownChange">
         <van-dropdown-item v-model="value1" :options="option" />
       </van-dropdown-menu>
-      <tab-refresh-list
-        requestUrl="">
+      <tab-refresh-list requestUrl="">
         <template v-solt="{ list }">
           <div class="notice_wrap">
             <div class="notice_list" v-for="i in 20" :key="i">
@@ -35,10 +29,9 @@
 </template>
 
 <script>
-import TabRefreshList from '@/components/TabRefreshList.vue';
-import { Toast } from 'vant';
+import TabRefreshList from "@/components/TabRefreshList.vue";
 export default {
-  // name: "market",
+  name: "announcement",
   components: {
     TabRefreshList
   },
@@ -46,18 +39,16 @@ export default {
     return {
       value1: 0,
       option: [
-        {text: '全部', value: 0},
-        {text: '未读', value: 1},
-        {text: '已读', value: 2}
+        { text: "全部", value: 0 },
+        { text: "未读", value: 1 },
+        { text: "已读", value: 2 }
       ]
-    }
+    };
   },
-  created() {
-    
-  },
+  created() {},
   methods: {
     dropdownChange(val) {
-      Toast(`您点击了${option[val]}`)
+      Toast(`您点击了${this.option[val]}`);
     }
   }
 }

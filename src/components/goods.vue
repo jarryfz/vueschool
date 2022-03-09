@@ -1,18 +1,25 @@
 <template>
   <div>
-     <div class="goods_list">
-      <div class="goods_card" v-for="item in goodsList" @click="btnEvent(item.id)" :key="item.price">
+    <div class="goods_list">
+      <div
+        class="goods_card"
+        v-for="item in goodsList"
+        @click="btnEvent(item.id)"
+        :key="item.price"
+      >
         <div class="goods_img">
-          <img :src="item.goodsImg" alt="">
+          <img :src="item.goodsImg" alt="" />
         </div>
-        <div class="goods_card_title">{{item.title}}</div>
+        <div class="goods_card_title">{{ item.title }}</div>
         <div class="flex goods_msg">
-          <div class="flex1">￥{{item.price}}</div>
-          <div>{{item.total}}</div>
+          <div class="flex1">￥{{ item.price }}</div>
+          <div>{{ item.total }}</div>
         </div>
         <div class="flex goods_footer">
-          <img :src="item.avatar" alt="">
-          <div class="flex1 p-l-8 text-over-nowrap goods_footer_name">{{item.name}}</div>
+          <img :src="item.avatar" alt="" />
+          <div class="flex1 p-l-8 text-over-nowrap goods_footer_name">
+            {{ item.name }}
+          </div>
         </div>
       </div>
     </div>
@@ -20,14 +27,11 @@
 </template>
 
 <script>
-import { Empty } from 'vant';
 export default {
-  name: 'goods',
-  components: {
-    [Empty.name]: Empty
-  },
+  name: "goods",
+  components: {},
   data() {
-    return {}
+    return {};
   },
   props: {
     goodsList: {
@@ -37,10 +41,10 @@ export default {
   },
   methods: {
     btnEvent(id) {
-      this.$emit('goodsDetailBtn',id)
+      this.$emit("goodsDetailBtn", id);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -94,8 +98,8 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     display:-webkit-box; //作为弹性伸缩盒子模型显示。
-    -webkit-box-orient:vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
-    -webkit-line-clamp:2; //显示的行
+    -webkit-box-orient: vertical; //设置伸缩盒子的子元素排列方式--从上到下垂直排列
+    -webkit-line-clamp: 2; //显示的行
   }
   .goods_footer {
     padding: 5px 10px;

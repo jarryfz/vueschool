@@ -1,20 +1,20 @@
 <template>
   <div>
-    <van-nav-bar
-      title="失物招领"
-      left-arrow
-      fixed
-      @click-left="onClickLeft"
-    >
-    <template #right>
-      <van-icon name="plus" size="18" />
-    </template>
+    <van-nav-bar title="失物招领" left-arrow fixed @click-left="onClickLeft">
+      <template #right>
+        <van-icon name="plus" size="18" />
+      </template>
     </van-nav-bar>
     <div class="main-content">
       <tab-refresh-list requestUrl="">
         <template v-slot="{ list }">
           <div class="list_wrap">
-            <div class="list_item" v-for="i in 10" :key="i" @click="goDetail(i)">
+            <div
+              class="list_item"
+              v-for="i in 10"
+              :key="i"
+              @click="goDetail(i)"
+            >
               <div class="list_item_head">
                 <div class="list_item_head_avatar">
                   <img src="../../assets/image/avatar_boy.png" alt="">
@@ -44,29 +44,25 @@
 </template>
 
 <script>
-import { NavBar, Tag, Icon } from 'vant';
 import navbar from '@/mixins/navbar.js';
 import TabRefreshList from '@/components/TabRefreshList.vue';
 export default {
-  // name: "market",
+  name: "lostAndFound",
   components: {
-    TabRefreshList,
-    [NavBar.name]: NavBar,
-    [Tag.name]: Tag,
-    [Icon.name]: Icon
+    TabRefreshList
   },
   mixins: [navbar],
   data() {
     return {
-      img2: require('../../assets/image/home.jpg'),
-      img1: require('../../assets/image/home3.jpg')
+      img2: require("../../assets/image/home.jpg"),
+      img1: require("../../assets/image/home3.jpg")
     }
   },
   methods: {
     goDetail(row) {
       this.$router.push({
-        path: `/vanTMobileHtml/${row}`,
-      })
+        path: `/vanTMobileHtml/${row}`
+      });
     }
   }
 }

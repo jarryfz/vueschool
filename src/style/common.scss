@@ -25,6 +25,10 @@ body,html {
   padding: 0 16px;
   background-color: #f6f6f6;
 }
+.pull-refresh-box {
+  height: 100%;
+  overflow-y: auto;
+}
 .main-content {
   // padding: 0 16px;
   height: 100%;

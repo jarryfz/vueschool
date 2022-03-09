@@ -2,10 +2,14 @@
   <div
     class="nav-bar z-index-max"
     :class="{ 'bottom-line': pageName }"
-    :style="isImmersion === true ? navBarStyle : {backgroundColor: '#673ab7',position: 'fixed',}"
+    :style="
+      isImmersion === true
+        ? navBarStyle
+        : { backgroundColor: '#673ab7', position: 'fixed' }
+    "
   >
     <div class="left" v-show="isShowBack">
-      <van-icon name="arrow-left" color="#ffffff" @click="back"/>
+      <van-icon name="arrow-left" color="#ffffff" @click="back" />
       <slot name="nav-left"></slot>
     </div>
     <div class="center">
@@ -27,13 +31,8 @@
 </template>
 
 <script>
-import { Search, Icon } from "vant";
-
 export default {
-  components: {
-    [Search.name]: Search,
-    [Icon.name]: Icon
-  },
+  components: {},
   props: {
     isImmersion: {
       type: Boolean,
@@ -41,11 +40,11 @@ export default {
     },
     pageName: {
       type: String,
-      default: "",
+      default: ""
     },
     isShowBack: {
       type: Boolean,
-      default: false,
+      default: false
     },
     isNavRight: {
       type: Boolean,
@@ -53,7 +52,7 @@ export default {
     },
     pageClassName: {
       tye: String,
-      default: ''
+      default: ""
     }
   },
   data() {
@@ -61,27 +60,27 @@ export default {
       searchValue: "",
       searchBackground: "transparent",
       scrollTopValue: -1,
-      opacity: '',
+      opacity: "",
       ANCHOR_SCROLL_TOP: 160,
       naBarSlotStyle: {
         normal: {
           search: {
-            bgColor: '#ffffff',
-            hintColor: '#999999',
-          },
+            bgColor: "#ffffff",
+            hintColor: "#999999"
+          }
         },
         highlight: {
-            search: {
-                bgColor: '#d7d7d7',
-                hintColor: '#eee',
-            },
+          search: {
+            bgColor: "#d7d7d7",
+            hintColor: "#eee"
+          }
         }
       },
       navBarCurrentSlotStyle: {},
       navBarStyle: {
         backgroundColor: "transparent",
-        position: "fixed",
-      },
+        position: "fixed"
+      }
     };
   },
   mounted() {
@@ -95,20 +94,30 @@ export default {
     //   }else {
     //     document.addEventListener("plusready", this.onScrollChange(), false);
     //   }
-    // } 
+    // }
     //监听页面滚动
-    document.querySelector(`.${this.pageClassName}`).addEventListener('scroll',this.onScrollChange)
+    document
+      .querySelector(`.${this.pageClassName}`)
+      .addEventListener("scroll", this.onScrollChange);
   },
   beforeDestroy() {
-    document.querySelector(`.${this.pageClassName}`).removeEventListener("scroll", this.onScrollChange)
-	},
+    document
+      .querySelector(`.${this.pageClassName}`)
+      .removeEventListener("scroll", this.onScrollChange);
+  },
   methods: {
     onSearch() {},
     onScrollChange($event) {
-      this.scrollTopValue = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || document.querySelector(`.${this.pageClassName}`).scrollTop;
-      let opacity = this.scrollTopValue / this.ANCHOR_SCROLL_TOP
-      opacity >= 1 ? this.searchBackground = '#673ab7' : this.searchBackground = 'transparent'
-      this.navBarStyle.backgroundColor = "rgba(103, 58, 183, " + opacity + ")"
+      this.scrollTopValue =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        document.querySelector(`.${this.pageClassName}`).scrollTop;
+      let opacity = this.scrollTopValue / this.ANCHOR_SCROLL_TOP;
+      opacity >= 1
+        ? (this.searchBackground = "#673ab7")
+        : (this.searchBackground = "transparent");
+      this.navBarStyle.backgroundColor = "rgba(103, 58, 183, " + opacity + ")";
       // if(this.isImmersion){
       //   opacity >= 1 ? plus.navigator.setStatusBarBackground("rgba(103, 58, 183, 1)") : opacity == 0 ? plus.navigator.setStatusBarBackground("transparent") : plus.navigator.setStatusBarBackground("rgba(103, 58, 183, " + opacity + ")")
       // }else {
@@ -116,9 +125,9 @@ export default {
       // }
     },
     back() {
-      this.$router.go(-1)
+      this.$router.go(-1);
     }
-  },
+  }
 };
 </script>
 

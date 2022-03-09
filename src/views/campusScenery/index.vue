@@ -1,26 +1,19 @@
 <template>
   <div>
-    <van-nav-bar
-      title="校园风光"
-      left-arrow
-      @click-left="onClickLeft"
-    />
+    <van-nav-bar title="校园风光" left-arrow @click-left="onClickLeft" />
   </div>
 </template>
 
 <script>
-import { NavBar } from 'vant';
 export default {
-  // name: "market",
-  components: {
-    [NavBar.name]: NavBar
-  },
+  name: "campusScenery",
+  components: {},
   data() {
-    return {}
+    return {};
   },
   methods: {
     onClickLeft() {
-      this.$router.push({path: "/"})
+      this.$router.push({ path: "/" });
     }
   }
 }

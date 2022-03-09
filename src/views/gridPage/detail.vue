@@ -1,11 +1,6 @@
 <template>
   <div>
-    <van-nav-bar
-      title="detail"
-      left-arrow
-      fixed
-      @click-left="onClickLeft"
-    />
+    <van-nav-bar title="detail" left-arrow fixed @click-left="onClickLeft" />
     <div class="main-content">
       <div class="mk_detail">
         <div class="flex mk_detail_top">
@@ -27,7 +22,10 @@
       </div>
       <div class="mk_leaveAMessage">
         <div>留言</div>
-        <van-empty :image="emptyImg" description="还未有人来留言，还不快来抢沙发" />
+        <van-empty
+          :image="emptyImg"
+          description="还未有人来留言，还不快来抢沙发"
+        />
       </div>
 
       <van-divider>猜你喜欢</van-divider>
@@ -44,44 +42,26 @@
 </template>
 
 <script>
-import { 
-  NavBar,
-  Uploader,
-  Notify,
-  GoodsAction,
-  GoodsActionIcon,
-  GoodsActionButton,
-  Empty,
-  Divider
-} from 'vant';
 import goods from "@/components/goods.vue";
 export default {
-  name: 'detail',
+  name: "detail",
   components: {
-    [NavBar.name]: NavBar,
-    [Uploader.name]: Uploader,
-    [Notify.name]: Notify,
-    [GoodsAction.name]: GoodsAction,
-    [GoodsActionIcon.name]: GoodsActionIcon,
-    [GoodsActionButton.name]: GoodsActionButton,
-    [Empty.name]: Empty,
-    [Divider.name]: Divider,
-    goods,
+    goods
   },
   data() {
     return {
-      emptyImg: require('../../assets/image/yu.png')
+      emptyImg: require("../../assets/image/yu.png")
     }
   },
   created() {
     let f = () => {
-      console.log(arguments)
-    }
-    f(23)
+      console.log(arguments);
+    };
+    f(23);
   },
   methods: {
     onClickLeft() {
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
   }
 }
@@ -94,7 +74,7 @@ export default {
 }
 .main-content {
   &::after {
-    content: '';
+    content: "";
     height: 44px;
     display: block;
   }

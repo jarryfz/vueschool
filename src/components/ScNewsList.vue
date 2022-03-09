@@ -15,23 +15,19 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>
-import { Image } from 'vant';
 export default {
-  name: 'ScNewsList',
-  components: {
-    [Image.name]: Image
-  },
-  data () {
-    return {}
+  name: "ScNewsList",
+  components: {},
+  data() {
+    return {};
   },
   props: {
     newsList: {
       type: Array,
-      default: () => {},
+      default: () => {}
     }
   },
   computed: {},
@@ -49,14 +45,14 @@ export default {
   &::after {
     position: absolute;
     box-sizing: border-box;
-    content: ' ';
+    content: " ";
     pointer-events: none;
     right: 0;
     bottom: 0;
     left: 16px;
     border-bottom: 1px solid #ebedf0;
-    -webkit-transform: scaleY(.5);
-    transform: scaleY(.5);
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
   }
   .sc_news_left {
     width: 100px;

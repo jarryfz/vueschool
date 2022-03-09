@@ -19,7 +19,7 @@
     </div>
     <div class="sc_card" v-for="item in mineCenterCard" :key="item">
       <div class="sc_card_cell">
-        <span>{{item.title}}</span>
+        <span>{{ item.title }}</span>
       </div>
       <van-grid :border="false">
         <van-grid-item
@@ -35,42 +35,37 @@
 </template>
 
 <script>
-import { Grid, GridItem, Icon } from "vant";
 export default {
   name: "mine",
-  components: {
-    [Grid.name]: Grid,
-    [GridItem.name]: GridItem,
-    [Icon.name]: Icon
-  },
+  components: {},
   data() {
     return {
       mineCenterCard: [
         {
-          title: '应用中心',
+          title: "应用中心",
           gridItems: [
-            { icon: 'photo-o', text: '缴费中心', path: '' },
-            { icon: 'photo-o', text: '我的课表', path: '' },
-            { icon: 'photo-o', text: '我的社团', path: '' },
-            { icon: 'photo-o', text: '购物车', path: '' }
+            { icon: "photo-o", text: "缴费中心", path: "" },
+            { icon: "photo-o", text: "我的课表", path: "" },
+            { icon: "photo-o", text: "我的社团", path: "" },
+            { icon: "photo-o", text: "购物车", path: "" }
           ]
         },
         {
-          title: '收藏中心',
+          title: "收藏中心",
           gridItems: [
-            { icon: 'photo-o', text: '叽喳校园', path: '' },
-            { icon: 'photo-o', text: '淘市场', path: '' },
-            { icon: 'photo-o', text: '小卖铺', path: '' },
-            { icon: 'photo-o', text: '资讯', path: '' },
+            { icon: "photo-o", text: "叽喳校园", path: "" },
+            { icon: "photo-o", text: "淘市场", path: "" },
+            { icon: "photo-o", text: "小卖铺", path: "" },
+            { icon: "photo-o", text: "资讯", path: "" }
           ]
         },
         {
-          title: '发布中心',
+          title: "发布中心",
           gridItems: [
-            { icon: 'photo-o', text: '叽喳校园', path: '' },
-            { icon: 'photo-o', text: '淘市场', path: '' },
-            { icon: 'photo-o', text: '小卖铺', path: '' },
-            { icon: 'photo-o', text: '失物招领', path: '' },
+            { icon: "photo-o", text: "叽喳校园", path: "" },
+            { icon: "photo-o", text: "淘市场", path: "" },
+            { icon: "photo-o", text: "小卖铺", path: "" },
+            { icon: "photo-o", text: "失物招领", path: "" }
           ]
         }
       ],
