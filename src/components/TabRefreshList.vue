@@ -11,13 +11,14 @@
   tabindex: tabs导航 [?]
 -->
 <template>
-  <div class="" :style="{ height: height }">
+  <div class="pull-refresh-box">
     <van-pull-refresh v-model="refresh" @refresh="onRefresh">
       <template v-if="!hasData">
         <van-list
           v-model="loading"
           :finished="finished"
           :immediate-check="false"
+          :offset="50"
           finished-text="没有更多了"
           @load="onLoad"
         >
@@ -63,18 +64,17 @@ export default {
       list: [],
       hasData: false,
       refresh: false,
-      loading: true,
+      loading: false,
       finished: false,
       emptyImage: require("@/assets/image/empty.png")
     }
   },
   mounted() {
+    console.log(this)
     // setTimeout(() =>{
       // this.getData()
     // },300)
-    this.$nextTick(function() {
-      this.getData();
-    });
+    this.getData();
   },
   methods: {
     async getData() {
@@ -99,7 +99,9 @@ export default {
     },
     onLoad() {
       if (this.request) {
-        this.getData();
+        setTimeout(() => {
+          this.getData();
+        }, 1000)
         // setTimeout(() => {
         //   this.getData();
         // }, 1000);
@@ -121,9 +123,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-::v-deep .van-pull-refresh {
-  height: 100%;
-  overflow-y: scroll;
-}
-</style>

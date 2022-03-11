@@ -53,9 +53,9 @@
       />
     </van-cell-group>
     <van-cell title="叽喳叽喳" icon="location-o" />
-    <!-- <sc-froum :froumList="froumList"></sc-froum> -->
+    <sc-froum :froumList="froumList"></sc-froum>
     <van-cell title="校内资讯" icon="location-o" />
-    <!-- <sc-news-list :newsList="newsList"></sc-news-list> -->
+    <sc-news-list :newsList="newsList"></sc-news-list>
   </div>
 </template>
 
@@ -137,8 +137,8 @@ export default {
   created() {},
   mounted() {
     setTimeout(() => {
-      // this.queryList();
-      // this.getFroumList()
+      this.queryList();
+      this.getFroumList();
     }, 0);
     // document.addEventListener('plusready', function() {
     //   var shares = null;

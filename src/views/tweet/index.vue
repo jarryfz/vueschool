@@ -19,7 +19,7 @@
         @click="tabClick"
       >
         <van-tab
-          v-for="(item,index) in tabList"
+          v-for="(item, index) in tabList"
           :key="index"
           :title="item.title"
         >
@@ -89,7 +89,7 @@ export default {
 }
 .main-content {
   // background: #f6f6f6;
-  height: 100%;
+  height: calc(100% - 44px);
   &::before {
     content: '';
     height: 44px;
@@ -114,6 +114,9 @@ export default {
   }
   ::v-deep .van-tab__pane {
     height: 100%;
+  }
+  ::v-deep .van-tabs__content--animated {
+    overflow: inherit;
   }
 }
 .van-nav-bar {

@@ -103,13 +103,16 @@ export default {
 <style lang="scss" scoped>
 .j-market {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   .j-market-header {
     height: 50px;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 11;
+  }
+  .main-content {
+    height: calc(100% - 100px);
   }
 }
 .my-swipe .van-swipe-item {
